@@ -11,3 +11,10 @@ public class RecipesApplication {
     }
 
 }
+
+/**
+ * 1 step: Creo il progetto con spring initializer (with maven)
+ *  aggiungo: spring web, spring data jpt (crea in automatico le classi dalle tabelle), mysql driver (collegamento al db)
+ *
+ */
+
