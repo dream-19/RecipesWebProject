@@ -1,4 +1,4 @@
-package com.psw.recipes;
+package com.psw.recipeStorage;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
