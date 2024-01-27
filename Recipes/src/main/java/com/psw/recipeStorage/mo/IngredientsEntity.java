@@ -22,9 +22,11 @@ public class IngredientsEntity {
     @Basic
     @Column(name = "unit_of_measurement", nullable = false, length = 50)
     private String unitOfMeasurement;
-    @Basic
+
+    /*@Basic //duplication!
     @Column(name = "recipe_id", nullable = true)
-    private Integer recipeId;
+    private Integer recipeId;*/
+
     @ManyToOne
     @JoinColumn(name = "recipe_id", referencedColumnName = "id")
     @JsonIgnore //NB
@@ -62,25 +64,26 @@ public class IngredientsEntity {
         this.unitOfMeasurement = unitOfMeasurement;
     }
 
-    public Integer getRecipeId() {
+    // DUPLICATED
+    /* public Integer getRecipeId() {
         return recipeId;
     }
 
     public void setRecipeId(Integer recipeId) {
         this.recipeId = recipeId;
-    }
+    } */
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IngredientsEntity that = (IngredientsEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(quantity, that.quantity) && Objects.equals(unitOfMeasurement, that.unitOfMeasurement) && Objects.equals(recipeId, that.recipeId);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(quantity, that.quantity) && Objects.equals(unitOfMeasurement, that.unitOfMeasurement) && Objects.equals(recipesByRecipeId, that.recipesByRecipeId); //modified
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, quantity, unitOfMeasurement, recipeId);
+        return Objects.hash(id, name, quantity, unitOfMeasurement, recipesByRecipeId); //modified
     }
 
     public RecipesEntity getRecipesByRecipeId() {

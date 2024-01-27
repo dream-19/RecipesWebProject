@@ -34,13 +34,17 @@ public class RecipesEntity {
     private Integer time;
     @Basic
     @Column(name = "difficulty", nullable = false)
-    private Object difficulty;
+    private Enum difficulty; //set to enum
     @Basic
     @Column(name = "photo", nullable = true, length = 255)
     private String photo;
-    @Basic
+
+    /*
+    @Basic //DUPLICATED
     @Column(name = "user_id", nullable = true)
     private Integer userId;
+    */
+
     @OneToMany(mappedBy = "recipesByRecipeId")
     @JsonIgnore //NB
     private Collection<IngredientsEntity> ingredientsById;
@@ -105,11 +109,11 @@ public class RecipesEntity {
         this.time = time;
     }
 
-    public Object getDifficulty() {
+    public Enum getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Object difficulty) {
+    public void setDifficulty(Enum difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -121,25 +125,25 @@ public class RecipesEntity {
         this.photo = photo;
     }
 
-    public Integer getUserId() {
+    /*public Integer getUserId() {
         return userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RecipesEntity that = (RecipesEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(dateOfCreation, that.dateOfCreation) && Objects.equals(serving, that.serving) && Objects.equals(description, that.description) && Objects.equals(steps, that.steps) && Objects.equals(time, that.time) && Objects.equals(difficulty, that.difficulty) && Objects.equals(photo, that.photo) && Objects.equals(userId, that.userId);
+        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(dateOfCreation, that.dateOfCreation) && Objects.equals(serving, that.serving) && Objects.equals(description, that.description) && Objects.equals(steps, that.steps) && Objects.equals(time, that.time) && Objects.equals(difficulty, that.difficulty) && Objects.equals(photo, that.photo) && Objects.equals(usersByUserId, that.usersByUserId); //modified
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, dateOfCreation, serving, description, steps, time, difficulty, photo, userId);
+        return Objects.hash(id, title, dateOfCreation, serving, description, steps, time, difficulty, photo, usersByUserId); //modified
     }
 
     public Collection<IngredientsEntity> getIngredientsById() {

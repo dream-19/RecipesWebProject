@@ -27,14 +27,18 @@ public class RecipesApplication {
  *      Per la creazione effettiva delle entità: 'generate persistence mapping'
  *          - ricordarsi di selezionare il package giusto (mo) e selezionando tutte le entità e le colonne di relazione!
  *          - nb: inserisco JsonIgnore per evitare loop infiniti nelle relazioni!
+ *          - nb: elimino gli attributi che risultano duplicati (es: recipeId) (ho modificato anche due funzioni equal e hash)
+ *
+ *  4 step: Inseriamo le configurazioni per vedere effettivamente il db (uso mysql driver)
+ *         - resources > application.properties > inserisco le configurazione (copia da altri esercizi)
+ *         - a questo punto posso fare il primo run per vedere se ci sono errori
+ *
+ *  5 step: creiamo il data access object (repository) per fare le query
+ *       - creo il package controller
+ *
  *
  *
  *          --------------------------------------------------
- *
- *  3) Configuriamo springboot per vedere il datasource (per ora lo vede solo IDE)
- *  resources > application.properties (qui si mettono tutte le configurazioni di springboot)
- *  inserisco le configurazioni dell'esercizio 09 (aggiornando con le mie credenziali)
- *
  *  4) Creiamo da (data access object) -> qui si chiama REPOSITORY (= dove faccio le query)
  *  - creo il package controller
  *  - copio dall'es 09 nella cartella mo i due repository
