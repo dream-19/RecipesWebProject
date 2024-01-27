@@ -1,0 +1,8 @@
+DELETE http://localhost:8080/recipeStorage/users/1
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/recipeStorage/users
+Accept: application/json
+

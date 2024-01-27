@@ -1,0 +1,13 @@
+PUT http://localhost:8080/recipeStorage/users/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Maria",
+  "email": "johnnewemail@gmail.com",
+  "dateOfBirth": "1990-01-01",
+  "hashPsw": "12345"
+}
+
+###

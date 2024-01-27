@@ -10,6 +10,10 @@ package com.psw.recipeStorage.mo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.sql.Date;
 import java.util.Collection;
@@ -23,22 +27,33 @@ public class UserEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "name", nullable = false, length = 255)
     private String name;
     @Basic
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "surname", nullable = false, length = 255)
     private String surname;
     @Basic
-    @Column(name = "nickname", nullable = false, length = 255)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "nickname", nullable = false, length = 255, unique = true)
     private String nickname;
     @Basic
-    @Column(name = "email", nullable = false, length = 255)
+    @Email
+    @Column(name = "email", nullable = false, length = 255, unique = true)
     private String email;
     @Basic
+    @NotNull
+    @Temporal(TemporalType.DATE)
     @Column(name = "date_of_birth", nullable = false)
     private Date dateOfBirth;
     @Basic
-    @Column(name = "hash_psw", nullable = false, length = 255)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = "hash_psw", nullable = false, length = 64)
     private String hashPsw;
     @OneToMany(mappedBy = "usersByUserId")
     @JsonIgnore //NB

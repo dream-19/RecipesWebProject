@@ -1,0 +1,45 @@
+POST http://localhost:8080/recipeStorage/users
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "name": "COSET",
+  "surname": "Bianchi",
+  "nickname": "dciooo9",
+  "email": "luccoghjseknln@gmail.com",
+  "dateOfBirth": "2000-12-17",
+  "hashPsw": "verysecurepassword"
+}]
+
+###
+
+POST http://localhost:8080/recipeStorage/users
+Accept: application/json
+Content-Type: application/json
+
+[
+  {
+    "name": "Lucia",
+    "surname": "Bianchi",
+    "nickname": "dream19llo",
+    "email": "lucillaa900aa@gmail.com",
+    "dateOfBirth": "2000-12-17",
+    "hashPsw": "verysecurepassword"
+  },
+  {
+    "name": "Maria",
+    "surname": "Rossi",
+    "nickname": "mary",
+    "email": "mary@fsks.com",
+    "dateOfBirth": "1990-01-01",
+    "hashPsw": "12345"
+  },
+  {
+    "name": "Lillo",
+    "surname": "Bianchi",
+    "nickname": "lillo",
+    "email": "lillo@llill.com",
+    "dateOfBirth": "1990-01-01",
+    "hashPsw": "lillo1234"
+  }
+]

@@ -19,8 +19,16 @@ import java.util.List;
 //Usiamo l'interfaccia per definire i metodi tramite naming convention, poi è Spring Boot che si occupa di creare le query
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Integer> {
     List<UserEntity> findAll(); //scrivo solo questo, la query è creata da springboot (per qualunque database)
+    UserEntity findById(Integer id); //trovo con id
 
-    //Volendo posso aggiungere query personalizzate qui:
+    void save(UserEntity userToUpdate);
+
+    void deleteById(Integer id);
+
+    void deleteAll();
+
+    int count();
+
 
 
 }
