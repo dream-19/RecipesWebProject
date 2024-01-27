@@ -43,16 +43,8 @@ public class RecipesApplication {
  *
  *  7 step: Creo httpRequest per fare il testing delle chiamate
  *       - creo la cartella httpRequests in Recipes
- *
- *
- *          -------------------------------------------------
-
- *
- *  7) Creo httpRequest ed escludo (per fare i test)
- *   - dentro aggiungo ordersdbRequests.http (con i metodi da usare)
- *   - posso provarli poi es: http://localhost:8080/sistema1/orders o runnale dal file di httprequest
- *   - org.apache.http.ConnectionClosedException: Premature end of chunk coded message body: closing chunk expected
- *   	si crea un loop infinito (oggetto - array), risolto dal JsonIgnore
- *
+ *          - tasto dx > mark directory as > excluded (per non farla vedere a springboot)
+ *       - creo il file: recipeStorageRequests.http (con i metodi da testare)
+ *       - Posso testarli usando i vari link (localhost:8080/recipeStorage/...) o fare run direttamente dal httprequest
  */
 
