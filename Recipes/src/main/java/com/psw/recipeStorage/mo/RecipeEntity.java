@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "recipes", schema = "RecipeDB", catalog = "")
-public class RecipesEntity {
+public class RecipeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -47,11 +47,11 @@ public class RecipesEntity {
 
     @OneToMany(mappedBy = "recipesByRecipeId")
     @JsonIgnore //NB
-    private Collection<IngredientsEntity> ingredientsById;
+    private Collection<IngredientEntity> ingredientsById;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore //NB
-    private UsersEntity usersByUserId;
+    private UserEntity usersByUserId;
 
     public Integer getId() {
         return id;
@@ -137,7 +137,7 @@ public class RecipesEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RecipesEntity that = (RecipesEntity) o;
+        RecipeEntity that = (RecipeEntity) o;
         return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(dateOfCreation, that.dateOfCreation) && Objects.equals(serving, that.serving) && Objects.equals(description, that.description) && Objects.equals(steps, that.steps) && Objects.equals(time, that.time) && Objects.equals(difficulty, that.difficulty) && Objects.equals(photo, that.photo) && Objects.equals(usersByUserId, that.usersByUserId); //modified
     }
 
@@ -146,19 +146,19 @@ public class RecipesEntity {
         return Objects.hash(id, title, dateOfCreation, serving, description, steps, time, difficulty, photo, usersByUserId); //modified
     }
 
-    public Collection<IngredientsEntity> getIngredientsById() {
+    public Collection<IngredientEntity> getIngredientsById() {
         return ingredientsById;
     }
 
-    public void setIngredientsById(Collection<IngredientsEntity> ingredientsById) {
+    public void setIngredientsById(Collection<IngredientEntity> ingredientsById) {
         this.ingredientsById = ingredientsById;
     }
 
-    public UsersEntity getUsersByUserId() {
+    public UserEntity getUsersByUserId() {
         return usersByUserId;
     }
 
-    public void setUsersByUserId(UsersEntity usersByUserId) {
+    public void setUsersByUserId(UserEntity usersByUserId) {
         this.usersByUserId = usersByUserId;
     }
 }

@@ -1,5 +1,13 @@
 package com.psw.recipeStorage.mo;
 
+/**
+ * UserEntity is a Java class that represents the entity or model for users in your application.
+ * It typically maps to a database table. This class contains fields that represent the properties of a user
+ * An instance of UserEntity represents a single user's data.
+ * You use UserEntity to define the structure of the users table in your database and
+ * to create, read, update, or delete user records in the database.
+ */
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -9,7 +17,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users", schema = "RecipeDB", catalog = "")
-public class UsersEntity {
+public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -34,7 +42,7 @@ public class UsersEntity {
     private String hashPsw;
     @OneToMany(mappedBy = "usersByUserId")
     @JsonIgnore //NB
-    private Collection<RecipesEntity> recipesById;
+    private Collection<RecipeEntity> recipesById;
 
     public Integer getId() {
         return id;
@@ -96,7 +104,7 @@ public class UsersEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UsersEntity that = (UsersEntity) o;
+        UserEntity that = (UserEntity) o;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(nickname, that.nickname) && Objects.equals(email, that.email) && Objects.equals(dateOfBirth, that.dateOfBirth) && Objects.equals(hashPsw, that.hashPsw);
     }
 
@@ -105,11 +113,11 @@ public class UsersEntity {
         return Objects.hash(id, name, surname, nickname, email, dateOfBirth, hashPsw);
     }
 
-    public Collection<RecipesEntity> getRecipesById() {
+    public Collection<RecipeEntity> getRecipesById() {
         return recipesById;
     }
 
-    public void setRecipesById(Collection<RecipesEntity> recipesById) {
+    public void setRecipesById(Collection<RecipeEntity> recipesById) {
         this.recipesById = recipesById;
     }
 }

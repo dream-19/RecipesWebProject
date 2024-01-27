@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "ingredients", schema = "RecipeDB", catalog = "")
-public class IngredientsEntity {
+public class IngredientEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -30,7 +30,7 @@ public class IngredientsEntity {
     @ManyToOne
     @JoinColumn(name = "recipe_id", referencedColumnName = "id")
     @JsonIgnore //NB
-    private RecipesEntity recipesByRecipeId;
+    private RecipeEntity recipesByRecipeId;
 
     public Integer getId() {
         return id;
@@ -77,7 +77,7 @@ public class IngredientsEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        IngredientsEntity that = (IngredientsEntity) o;
+        IngredientEntity that = (IngredientEntity) o;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(quantity, that.quantity) && Objects.equals(unitOfMeasurement, that.unitOfMeasurement) && Objects.equals(recipesByRecipeId, that.recipesByRecipeId); //modified
     }
 
@@ -86,11 +86,11 @@ public class IngredientsEntity {
         return Objects.hash(id, name, quantity, unitOfMeasurement, recipesByRecipeId); //modified
     }
 
-    public RecipesEntity getRecipesByRecipeId() {
+    public RecipeEntity getRecipesByRecipeId() {
         return recipesByRecipeId;
     }
 
-    public void setRecipesByRecipeId(RecipesEntity recipesByRecipeId) {
+    public void setRecipesByRecipeId(RecipeEntity recipesByRecipeId) {
         this.recipesByRecipeId = recipesByRecipeId;
     }
 }

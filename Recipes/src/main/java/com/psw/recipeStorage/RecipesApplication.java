@@ -33,25 +33,22 @@ public class RecipesApplication {
  *         - resources > application.properties > inserisco le configurazione (copia da altri esercizi)
  *         - a questo punto posso fare il primo run per vedere se ci sono errori
  *
- *  5 step: creiamo il data access object (repository) per fare le query
- *       - creo il package controller
+ *  5 step: creiamo il data access object (repository) per fare le query (model: interazione con il db)
+ *        - creo le interfacce: UsersRepository, RecipesRepository, IngredientsRepository (dentro mo):
+ *          qui dentro andiamo a definire le query (usando il linguaggio HQL)
+ *
+ *  6 step: Creiamo il REST CONTROLLER (qui ho le chiamate HTTP che mi servono)
+ *       - creo il package controller (dentro recipeStorage)
+ *       - creo i controller: UsersController, RecipesController, IngredientsController con i vari metodi crud (o anche aggiuntivi)
+ *
+ *  7 step: Creo httpRequest per fare il testing delle chiamate
+ *       - creo la cartella httpRequests in Recipes
  *
  *
+ *          -------------------------------------------------
+
  *
- *          --------------------------------------------------
- *  4) Creiamo da (data access object) -> qui si chiama REPOSITORY (= dove faccio le query)
- *  - creo il package controller
- *  - copio dall'es 09 nella cartella mo i due repository
- *  - customer order repository: creo una query a hoc per marcare gli ordini (usa il linguaggio HQL)
- *
- *
- *  5) Creiamo il REST CONTROLLER (qui ho le chiamate HTTP che mi servono)
- *  	-> dentro il package controller (copio sempre da 09) -> ordersdbRequests.http
- *   	-> attenzione al metodo non crud
- *
- *
- *
- *  6) Creo httpRequest ed escludo (per fare i test)
+ *  7) Creo httpRequest ed escludo (per fare i test)
  *   - dentro aggiungo ordersdbRequests.http (con i metodi da usare)
  *   - posso provarli poi es: http://localhost:8080/sistema1/orders o runnale dal file di httprequest
  *   - org.apache.http.ConnectionClosedException: Premature end of chunk coded message body: closing chunk expected
