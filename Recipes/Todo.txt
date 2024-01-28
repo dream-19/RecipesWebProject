@@ -1,4 +1,7 @@
 1) Inserire la validazione nello user controller
+- validation della data con mex corretto!
+- validation del update skipping the not null problem!
+- aggiungere casi di testing per ognuno
 2) Generare il controller per gli ingredienti e le ricette
 2.5) metodi per avere tutte le ricette/ingredienti di un user...
 3) Testare tutto

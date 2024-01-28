@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -74,8 +75,27 @@ public class usersController {
     @ResponseStatus( HttpStatus.NO_CONTENT) //204 or 200
     @Transactional //operazione atomica
     //user contains the new information
-    public void updateUserById(@PathVariable("id") Integer id, @RequestBody UserEntity user) {
+    public ResponseEntity<?> updateUserById(@PathVariable("id") Integer id, @Valid @RequestBody UserEntity user, BindingResult bindingResult) {
         UserEntity userToUpdate=userRepository.findById(id); //find user to update
+        if (userToUpdate == null) {
+            return ResponseEntity.badRequest().body("User not found");
+        }
+
+        //validate
+        validator.validate(user, bindingResult);
+        if (bindingResult.hasErrors()) {
+            for (FieldError fieldError : bindingResult.getFieldErrors())
+                if (!fieldError.getCode().equals("NotNull"))  //ignore not null error (they are not an error)
+                    return ResponseEntity.badRequest().body(fieldError.getDefaultMessage());
+        }
+
+        //Validate email or nickname already present
+        if (userRepository.findByEmail(user.getEmail()) != null && !user.getEmail().equals(userToUpdate.getEmail())) {
+            return ResponseEntity.badRequest().body("Email already used");
+        }
+        if (userRepository.findByNickname(user.getNickname()) != null && !user.getNickname().equals(userToUpdate.getNickname())) {
+            return ResponseEntity.badRequest().body("Nickname already used");
+        }
 
         //Update attributes that needs to be updated
         if (user.getName() != null) {
@@ -102,7 +122,7 @@ public class usersController {
 
         userRepository.save(userToUpdate);
         log.info("User updated successfully");
-        return;
+        return ResponseEntity.ok().body("User updated successfully");
     }
 
     //CREATE new user
@@ -120,9 +140,16 @@ public class usersController {
             validator.validate(user, bindingResult);
 
             if (bindingResult.hasErrors()) {
-                // Handle validation errors
-                // You can return these errors or log them as required
-                return ResponseEntity.badRequest().body("mary"+bindingResult.getAllErrors());
+                // Handle validation errors -> taking the default one
+                return ResponseEntity.badRequest().body(bindingResult.getAllErrors().get(0).getDefaultMessage());
+            }
+
+            //Check if the email or nickname are already used
+            if (userRepository.findByEmail(user.getEmail()) != null) {
+                return ResponseEntity.badRequest().body("Email already used");
+            }
+            if (userRepository.findByNickname(user.getNickname()) != null) {
+                return ResponseEntity.badRequest().body("Nickname already used");
             }
 
             //Create

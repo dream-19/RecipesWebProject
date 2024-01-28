@@ -37,8 +37,8 @@ Content-Type: application/json
 [{
   "name": "Anna",
   "surname": "Binny",
-  "nickname": "Anyany",
-  "email": "any@ksksl.com",
+  "nickname": "Anyany1",
+  "email": "any1@ksksl.com",
   "dateOfBirth": "2010-12-18",
   "hashPsw": "any12345"
 }]
@@ -79,7 +79,7 @@ Content-Type: application/json
   "name": "Lucia",
   "surname": "Bianchi",
   "nickname": "dream19",
-  "email": "l211uccoghjsemkl00ojjnbknln@gmail.com",
+  "email": "l211uccoghjs9emkl00ojjnbknln@gmail.com",
   "dateOfBirth": "2000-12-17",
   "hashPsw": "verysecurepassword"
 }]

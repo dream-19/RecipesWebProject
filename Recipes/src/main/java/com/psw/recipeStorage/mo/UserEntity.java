@@ -11,7 +11,6 @@ package com.psw.recipeStorage.mo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -29,32 +28,32 @@ public class UserEntity {
     private Integer id;
 
     @Basic
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "name", nullable = false, length = 255)
+    @NotNull(message = "Name field is required")
+    @Size(min = 1, max = 255, message = "Name must be between 1 and 255 characters")
+    @Column(name = "name", nullable = false, length = 255) //this is a constraint at database level
     private String name;
     @Basic
-    @NotNull
-    @Size(min = 1, max = 255)
+    @NotNull(message = "Surname field is required")
+    @Size(min = 1, max = 255, message = "Surname must be between 1 and 255 characters")
     @Column(name = "surname", nullable = false, length = 255)
     private String surname;
     @Basic
-    @NotNull
-    @Size(min = 1, max = 255)
+    @NotNull(message = "Nickname field is required")
+    @Size(min = 1, max = 255, message = "Nickname must be between 1 and 255 characters")
     @Column(name = "nickname", nullable = false, length = 255, unique = true)
     private String nickname;
     @Basic
-    @Email
+    @Email(message = "Email must be valid")
     @Column(name = "email", nullable = false, length = 255, unique = true)
     private String email;
     @Basic
-    @NotNull
+    @NotNull(message = "Date of birth field is required")
     @Temporal(TemporalType.DATE)
     @Column(name = "date_of_birth", nullable = false)
     private Date dateOfBirth;
     @Basic
-    @NotNull
-    @Size(min = 1, max = 64)
+    @NotNull(message = "Password field is required")
+    @Size(min = 1, max = 64, message = "Password must be between 1 and 64 characters")
     @Column(name = "hash_psw", nullable = false, length = 64)
     private String hashPsw;
     @OneToMany(mappedBy = "usersByUserId")

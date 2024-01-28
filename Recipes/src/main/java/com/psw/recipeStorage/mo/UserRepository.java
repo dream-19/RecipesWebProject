@@ -11,6 +11,7 @@ package com.psw.recipeStorage.mo;
  * For example, you can use it to save a new user, find users by email, or retrieve all users.
  */
 
+import org.apache.catalina.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
@@ -30,5 +31,7 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, I
     int count();
 
 
+    UserEntity findByEmail(String email);
 
+    UserEntity findByNickname(String nickname);
 }

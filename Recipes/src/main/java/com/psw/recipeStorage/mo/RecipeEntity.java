@@ -2,6 +2,8 @@ package com.psw.recipeStorage.mo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -15,24 +17,30 @@ public class RecipeEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic
+    @NotNull(message = "Title field is required")
+    @Size(min = 1, max = 255, message = "Title must be between 1 and 255 characters")
     @Column(name = "title", nullable = false, length = 255)
     private String title;
     @Basic
     @Column(name = "date_of_creation", nullable = true)
     private Timestamp dateOfCreation;
     @Basic
+    @NotNull(message = "Serving field is required")
     @Column(name = "serving", nullable = false)
     private Integer serving;
     @Basic
     @Column(name = "description", nullable = true, length = -1)
     private String description;
     @Basic
+    @NotNull(message = "Steps field is required")
     @Column(name = "steps", nullable = false, length = -1)
     private String steps;
     @Basic
+    @NotNull(message = "Time field is required")
     @Column(name = "time", nullable = false)
     private Integer time;
     @Basic
+    @NotNull(message = "Difficulty field is required")
     @Column(name = "difficulty", nullable = false)
     private Enum difficulty; //set to enum
     @Basic

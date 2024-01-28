@@ -3,6 +3,10 @@ package com.psw.recipeStorage.mo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -14,12 +18,17 @@ public class IngredientEntity {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic
+    @NotNull(message = "Name field is required")
+    @Size(min = 1, max = 255, message = "Name must be between 1 and 255 characters")
     @Column(name = "name", nullable = false, length = 255)
     private String name;
     @Basic
+    @NotNull(message = "Quantity field is required")
     @Column(name = "quantity", nullable = false, precision = 2)
     private BigDecimal quantity;
     @Basic
+    @NotNull(message = "Unit of measurement field is required")
+    @Size(min = 1, max = 50, message = "Unit of measurement must be between 1 and 50 characters")
     @Column(name = "unit_of_measurement", nullable = false, length = 50)
     private String unitOfMeasurement;
 
