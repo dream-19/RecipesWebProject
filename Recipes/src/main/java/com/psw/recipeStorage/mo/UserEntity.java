@@ -15,6 +15,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+
 import java.sql.Date;
 import java.util.Collection;
 import java.util.Objects;
@@ -26,6 +27,7 @@ public class UserEntity {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
+
     @Basic
     @NotNull
     @Size(min = 1, max = 255)

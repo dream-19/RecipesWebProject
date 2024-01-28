@@ -2,21 +2,6 @@ POST http://localhost:8080/recipeStorage/users
 Accept: application/json
 Content-Type: application/json
 
-[{
-  "name": "COSET",
-  "surname": "Bianchi",
-  "nickname": "dciooo9",
-  "email": "luccoghjseknln@gmail.com",
-  "dateOfBirth": "2000-12-17",
-  "hashPsw": "verysecurepassword"
-}]
-
-###
-
-POST http://localhost:8080/recipeStorage/users
-Accept: application/json
-Content-Type: application/json
-
 [
   {
     "name": "Lucia",
@@ -43,3 +28,58 @@ Content-Type: application/json
     "hashPsw": "lillo1234"
   }
 ]
+
+### good request
+POST http://localhost:8080/recipeStorage/users
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "name": "Anna",
+  "surname": "Binny",
+  "nickname": "Anyany",
+  "email": "any@ksksl.com",
+  "dateOfBirth": "2010-12-18",
+  "hashPsw": "any12345"
+}]
+
+### bad request (email not formatted)
+POST http://localhost:8080/recipeStorage/users
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "name": "Andrea",
+  "surname": "Cirroi",
+  "nickname": "Anderrr",
+  "email": "notagoodemail",
+  "dateOfBirth": "2000-12-17",
+  "hashPsw": "andee1000"
+}]
+
+### bad request (missing name)
+POST http://localhost:8080/recipeStorage/users
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "surname": "Bianchi",
+  "nickname": "2dcb11vnioo00iko9",
+  "email": "l211uccoghjsemkl00ojjnbknln@gmail.com",
+  "dateOfBirth": "2000-12-17",
+  "hashPsw": "verysecurepassword"
+}]
+
+### bad request (nickname already present)
+POST http://localhost:8080/recipeStorage/users
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "name": "Lucia",
+  "surname": "Bianchi",
+  "nickname": "dream19",
+  "email": "l211uccoghjsemkl00ojjnbknln@gmail.com",
+  "dateOfBirth": "2000-12-17",
+  "hashPsw": "verysecurepassword"
+}]

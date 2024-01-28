@@ -24,20 +24,20 @@ import org.springframework.web.bind.annotation.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
-import org.springframework.web.bind.annotation.*;
+
+//Validator
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
+import org.springframework.validation.Validator;
 
-import java.util.Collection;
 import java.util.List;
 
 //REST CONTROLLER: creo il rest controller per la collection users
 @RestController
 @RequestMapping(value = "/recipeStorage") //path
-
 public class usersController {
 
     private static final Logger log = LoggerFactory.getLogger(usersController.class); //logger
@@ -45,6 +45,9 @@ public class usersController {
     //Usiamo Autowired per creare un'istanza dell'interfaccia in automatico
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private Validator validator;
 
     //GET sulla collection -> produce JSON
     @RequestMapping(value = "/users",
@@ -106,17 +109,30 @@ public class usersController {
     @RequestMapping(value = "/users",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
     @Transactional
-    public void addUser(@RequestBody List<UserEntity> users) {
+    public ResponseEntity<?> addUser(@Valid @RequestBody List<UserEntity> users) {
+        if (users.isEmpty()) {
+            return ResponseEntity.badRequest().body("User list is empty");
+        }
         for (UserEntity user : users) {
+            // validate
+            BindingResult bindingResult = new BeanPropertyBindingResult(user, "user");
+            validator.validate(user, bindingResult);
+
+            if (bindingResult.hasErrors()) {
+                // Handle validation errors
+                // You can return these errors or log them as required
+                return ResponseEntity.badRequest().body("mary"+bindingResult.getAllErrors());
+            }
+
+            //Create
             user.setHashPsw(hashThePsw(user.getHashPsw())); // assuming you hash passwords
             userRepository.save(user); // saving each user
             log.info("user added successfully");
         }
         log.info("Users created successfully");
 
-        return;
+        return ResponseEntity.ok().body("All users are valid ");
     }
 
     //DELETE by id

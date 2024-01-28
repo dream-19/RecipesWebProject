@@ -1,0 +1,10 @@
+1) Inserire la validazione nello user controller
+2) Generare il controller per gli ingredienti e le ricette
+2.5) metodi per avere tutte le ricette/ingredienti di un user...
+3) Testare tutto
+
+
+
+------------------
+DUBBI:
+- ma l'id autoincrementale deve continuare a salire una volta che ho eliminato degli user? (presumo di si)
