@@ -11,3 +11,28 @@
 ------------------
 DUBBI:
 - ma l'id autoincrementale deve continuare a salire una volta che ho eliminato degli user? (presumo di si)
+
+
+
+-----------------------
+Users:
+
+Create a new user: POST /users
+Get a list of all users: GET /users
+Get a specific user by ID: GET /users/{userId}
+Update a user by ID: PUT /users/{userId}
+Delete a user by ID: DELETE /users/{userId}
+Recipes:
+
+Create a new recipe for a user: POST /users/{userId}/recipes
+Get a list of all recipes for a user: GET /users/{userId}/recipes
+Get a specific recipe by ID for a user: GET /users/{userId}/recipes/{recipeId}
+Update a recipe by ID for a user: PUT /users/{userId}/recipes/{recipeId}
+Delete a recipe by ID for a user: DELETE /users/{userId}/recipes/{recipeId}
+Ingredients:
+
+Create a new ingredient for a recipe: POST /users/{userId}/recipes/{recipeId}/ingredients
+Get a list of all ingredients for a recipe: GET /users/{userId}/recipes/{recipeId}/ingredients
+Get a specific ingredient by ID for a recipe: GET /users/{userId}/recipes/{recipeId}/ingredients/{ingredientId}
+Update an ingredient by ID for a recipe: PUT /users/{userId}/recipes/{recipeId}/ingredients/{ingredientId}
+Delete an ingredient by ID for a recipe: DELETE /users/{userId}/recipes/{recipeId}/ingredients/{ingredientId}

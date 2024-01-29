@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -22,6 +23,7 @@ public class RecipeEntity {
     @Column(name = "title", nullable = false, length = 255)
     private String title;
     @Basic
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_of_creation", nullable = true)
     private Timestamp dateOfCreation;
     @Basic

@@ -6,8 +6,8 @@ Content-Type: application/json
   {
     "name": "Lucia",
     "surname": "Bianchi",
-    "nickname": "dream19llo",
-    "email": "lucillaa900aa@gmail.com",
+    "nickname": "dream19",
+    "email": "dreamy@gmail.com",
     "dateOfBirth": "2000-12-17",
     "hashPsw": "verysecurepassword"
   },
@@ -21,10 +21,10 @@ Content-Type: application/json
   },
   {
     "name": "Lillo",
-    "surname": "Bianchi",
+    "surname": "Risi",
     "nickname": "lillo",
     "email": "lillo@llill.com",
-    "dateOfBirth": "1990-01-01",
+    "dateOfBirth": "1998-11-21",
     "hashPsw": "lillo1234"
   }
 ]

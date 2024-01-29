@@ -68,6 +68,15 @@ public class usersController {
         return user;
     }
 
+    //GET by nickname -> produce JSON
+    @RequestMapping(value = "/users/nickname/{nickname}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserEntity getUserByNickname(@PathVariable("nickname") String nickname) {
+        UserEntity user=userRepository.findByNickname(nickname);
+        return user;
+    }
+
     //UPDATE by id
     @RequestMapping(value = "/users/{id}",
             method = RequestMethod.PUT,
@@ -86,7 +95,7 @@ public class usersController {
         if (bindingResult.hasErrors()) {
             for (FieldError fieldError : bindingResult.getFieldErrors())
                 if (!fieldError.getCode().equals("NotNull"))  //ignore not null error (they are not an error)
-                    return ResponseEntity.badRequest().body(fieldError.getDefaultMessage());
+                        return ResponseEntity.badRequest().body(fieldError.getDefaultMessage());
         }
 
         //Validate email or nickname already present
