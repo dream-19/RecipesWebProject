@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
 
+
 @Entity
 @Table(name = "recipes", schema = "RecipeDB", catalog = "")
 public class RecipeEntity {
@@ -41,10 +42,10 @@ public class RecipeEntity {
     @NotNull(message = "Time field is required")
     @Column(name = "time", nullable = false)
     private Integer time;
-    @Basic
+    @Enumerated(EnumType.STRING)
     @NotNull(message = "Difficulty field is required")
     @Column(name = "difficulty", nullable = false)
-    private Enum difficulty; //set to enum
+    private Difficulty difficulty; //enum value
     @Basic
     @Column(name = "photo", nullable = true, length = 255)
     private String photo;
@@ -119,14 +120,13 @@ public class RecipeEntity {
         this.time = time;
     }
 
-    public Enum getDifficulty() {
+    public Difficulty getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Enum difficulty) {
+    public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
-
     public String getPhoto() {
         return photo;
     }

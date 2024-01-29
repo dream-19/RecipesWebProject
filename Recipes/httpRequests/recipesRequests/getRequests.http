@@ -1,0 +1,29 @@
+### get all recipes
+
+GET http://localhost:8080/recipeStorage/recipes
+Accept: application/json
+
+### get first recipe
+
+GET http://localhost:8080/recipeStorage/recipes/1
+Accept: application/json
+
+### get by title (url encoding)
+
+GET http://localhost:8080/recipeStorage/recipes/title/Classic%20Spaghetti%20Bolognese
+Accept: application/json
+
+### get by user id
+GET http://localhost:8080/recipeStorage/recipes/user/1
+Accept: application/json
+
+### get by user id and recipe id
+GET http://localhost:8080/recipeStorage/recipes/user/1/recipe/1
+Accept: application/json
+
+### get by difficulty (Easy, Medium, Hard)
+GET http://localhost:8080/recipeStorage/recipes/difficulty/Easy
+Accept: application/json
+
+
+

@@ -40,7 +40,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/recipeStorage") //path
 public class usersController {
-
     private static final Logger log = LoggerFactory.getLogger(usersController.class); //logger
 
     //Usiamo Autowired per creare un'istanza dell'interfaccia in automatico
