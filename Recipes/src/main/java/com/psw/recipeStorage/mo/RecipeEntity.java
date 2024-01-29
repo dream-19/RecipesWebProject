@@ -57,7 +57,7 @@ public class RecipeEntity {
     */
 
     @OneToMany(mappedBy = "recipesByRecipeId")
-    @JsonIgnore //NB
+    //@JsonIgnore //NB
     private Collection<IngredientEntity> ingredientsById;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

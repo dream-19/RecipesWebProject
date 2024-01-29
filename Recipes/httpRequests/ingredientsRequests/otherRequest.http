@@ -1,0 +1,2 @@
+### count the ingredients of a recipe
+GET  http://localhost:8080/recipeStorage/recipes/1/ingredients/count

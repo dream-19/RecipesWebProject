@@ -70,8 +70,8 @@ public class recipesController {
         return recipe;
     }
 
-    //Get by user id
-    @RequestMapping(value = "/recipes/user/{id}",
+    //Get by user id (all recipes of an user)
+    @RequestMapping(value = "/users/{id}/recipes",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<RecipeEntity> getRecipeByUserId(@PathVariable("id") Integer id) {
@@ -80,7 +80,7 @@ public class recipesController {
     }
 
     //GET by user id and recipe id
-    @RequestMapping(value = "/recipes/user/{id}/recipe/{recipeId}",
+    @RequestMapping(value = "/users/{id}/recipes/{recipeId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public RecipeEntity getRecipeByUserIdAndRecipeId(@PathVariable("id") Integer id, @PathVariable("recipeId") Integer recipeId) {

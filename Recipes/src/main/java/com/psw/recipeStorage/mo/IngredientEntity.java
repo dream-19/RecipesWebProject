@@ -38,7 +38,7 @@ public class IngredientEntity {
 
     @ManyToOne
     @JoinColumn(name = "recipe_id", referencedColumnName = "id")
-    //@JsonIgnore //NB
+    @JsonIgnore //NB
     private RecipeEntity recipesByRecipeId;
 
     public Integer getId() {
@@ -102,4 +102,6 @@ public class IngredientEntity {
     public void setRecipesByRecipeId(RecipeEntity recipesByRecipeId) {
         this.recipesByRecipeId = recipesByRecipeId;
     }
+
+
 }

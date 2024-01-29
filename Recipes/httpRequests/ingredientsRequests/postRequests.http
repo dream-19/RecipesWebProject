@@ -1,0 +1,23 @@
+### POST new ingredient to recipe
+
+POST http://localhost:8080/recipeStorage/recipes/1/ingredients
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "name": "new ingredient",
+  "quantity": 1,
+  "unitOfMeasurement": "kg"
+}]
+
+### bad post request (missing name)
+POST http://localhost:8080/recipeStorage/recipes/1/ingredients
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "quantity": 1,
+  "unitOfMeasurement": "kg"
+}]
+
+

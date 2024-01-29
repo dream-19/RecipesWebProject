@@ -1,6 +1,6 @@
-### delete one recipe
+### delete one recipe (cascade for ingredients)
 
-DELETE http://localhost:8080/recipeStorage/recipes/2
+DELETE http://localhost:8080/recipeStorage/recipes/3
 Accept: application/json
 
 ### delete all recipes of an user

@@ -1,9 +1,11 @@
 1) Inserire la validazione nello user controller
-- metodi per prendere tutte le ricette di un certo user!
 2) Generare il controller per gli ingredienti e le ricette
 2.5) metodi per avere tutte le ricette/ingredienti di un user...
 3) Testare tutto
 
+-----
+0) prob vanno sistemate le url: per andare a prendere sempre e solo le cose relative all'utente che le sta chiedendo
+- o faccio l'url enorme o faccio un url con un parametro che è l'id dell'utente
 
 
 ------------------

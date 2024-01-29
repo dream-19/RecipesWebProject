@@ -14,11 +14,11 @@ GET http://localhost:8080/recipeStorage/recipes/title/Classic%20Spaghetti%20Bolo
 Accept: application/json
 
 ### get by user id
-GET http://localhost:8080/recipeStorage/recipes/user/1
+GET http://localhost:8080/recipeStorage/users/1/recipes
 Accept: application/json
 
 ### get by user id and recipe id
-GET http://localhost:8080/recipeStorage/recipes/user/1/recipe/1
+GET http://localhost:8080/recipeStorage/users/1/recipes/1
 Accept: application/json
 
 ### get by difficulty (Easy, Medium, Hard)
