@@ -61,7 +61,7 @@ public class RecipeEntity {
     private Collection<IngredientEntity> ingredientsById;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @JsonIgnore //NB
+    //@JsonIgnore //json ignore is used only on one side of the relationship to avoid infinite loop! (in the Many to one)
     private UserEntity usersByUserId;
 
     public Integer getId() {
