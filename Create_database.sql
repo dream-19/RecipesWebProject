@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS steps (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     step_number INT NOT NULL,
     title VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
+    description VARCHAR(512) NOT NULL,
     recipe_id INT,
     FOREIGN KEY (recipe_id) REFERENCES recipes(id)
     ON DELETE CASCADE
