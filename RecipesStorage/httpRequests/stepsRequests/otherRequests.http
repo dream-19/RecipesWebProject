@@ -1,0 +1,5 @@
+### count the steps of a recipe
+GET  http://localhost:8080/recipeStorage/recipes/1/steps/count
+
+### get all steps saved
+GET  http://localhost:8080/recipeStorage/steps/count

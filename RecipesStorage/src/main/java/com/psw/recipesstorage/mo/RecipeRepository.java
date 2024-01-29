@@ -1,4 +1,5 @@
 package com.psw.recipesstorage.mo;
+/* Interfaccia per definire le query */
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
@@ -15,14 +16,9 @@ public interface RecipeRepository extends PagingAndSortingRepository<RecipeEntit
 
     int count();
 
-
     RecipeEntity findByTitle(String title);
-
-    Iterable<RecipeEntity> findByUsersByUserId_Id(Integer id);
-
 
     Iterable<RecipeEntity> findByDifficulty(Difficulty difficulty);
 
-    RecipeEntity findByUsersByUserId_IdAndId(Integer userId, Integer id); //seguo il nome che gli ho dato nell'entity
 
 }

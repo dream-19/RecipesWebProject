@@ -1,8 +1,8 @@
 package com.psw.recipesstorage.controller;
 
-import com.psw.recipeStorage.mo.*;
-import com.psw.recipeStorage.mo.IngredientEntity;
-import com.psw.recipeStorage.mo.IngredientRepository;
+import com.psw.recipesstorage.mo.*;
+import com.psw.recipesstorage.mo.IngredientEntity;
+import com.psw.recipesstorage.mo.IngredientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +21,13 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/recipeStorage") //path
 public class ingredientsController {
-    private static final Logger log = LoggerFactory.getLogger(recipesController.class); //logger
+    private static final Logger log = LoggerFactory.getLogger(ingredientsController.class); //logger
 
     @Autowired
     private IngredientRepository ingredientRepository;
 
     @Autowired
     private RecipeRepository recipeRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private Validator validator;

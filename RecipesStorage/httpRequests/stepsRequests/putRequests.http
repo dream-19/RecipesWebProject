@@ -1,0 +1,8 @@
+PUT http://localhost:8080/recipeStorage/steps/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "New title to the step :)"
+}
+

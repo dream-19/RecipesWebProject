@@ -1,5 +1,6 @@
 package com.psw.recipesstorage.mo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -45,9 +46,11 @@ public class RecipeEntity {
     @Column(name = "photo", nullable = true, length = 255)
     private String photo;
     @OneToMany(mappedBy = "recipesByRecipeId")
+    @JsonIgnore
     private Collection<IngredientEntity> ingredientsById;
 
     @OneToMany(mappedBy = "recipesByRecipeId")
+    @JsonIgnore
     private Collection<StepEntity> stepsById; //manually added
 
     public Integer getId() {

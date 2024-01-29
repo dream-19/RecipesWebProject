@@ -1,0 +1,15 @@
+### POST new step to recipe
+
+POST http://localhost:8080/recipeStorage/recipes/1/steps
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "stepNumber": 8,
+  "title": "Step 8",
+  "description": "Step 8 description"
+}]
+
+
+
+

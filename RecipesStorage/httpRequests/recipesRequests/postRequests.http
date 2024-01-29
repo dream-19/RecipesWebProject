@@ -7,12 +7,8 @@ Content-Type: application/json
   "title": "Ricetta di prova",
   "dateOfCreation": "2024-01-01",
   "serving": 4,
-  "steps": "step1, step2, step3",
   "difficulty": "Easy",
-  "time": 30,
-  "usersByUserId": {
-    "id": 1
-  }
+  "time": 30
 }]
 
 ### Bad POST requests (title missing)
@@ -23,30 +19,10 @@ Content-Type: application/json
 [{
   "dateOfCreation": "2024-01-01",
   "serving": 4,
-  "steps": "step1, step2, step3",
   "difficulty": "Easy",
-  "time": 30,
-  "usersByUserId": {
-    "id": 1
-  }
+  "time": 30
 }]
 
-### Bad POST requests (user not existing)
-POST http://localhost:8080/recipeStorage/recipes
-Accept: application/json
-Content-Type: application/json
-
-[{
-  "title": "Ricetta di prova",
-  "dateOfCreation": "2024-01-01",
-  "serving": 4,
-  "steps": "step1, step2, step3",
-  "difficulty": "Easy",
-  "time": 30,
-  "usersByUserId": {
-    "id": 100
-  }
-}]
 
 
 ### Bad POST requests (enum not existing)
@@ -58,10 +34,6 @@ Content-Type: application/json
   "title": "Ricetta di prova",
   "dateOfCreation": "2024-01-01",
   "serving": 4,
-  "steps": "step1, step2, step3",
   "difficulty": "Easyyyyy",
-  "time": 30,
-  "usersByUserId": {
-    "id": 1
-  }
+  "time": 30
 }]

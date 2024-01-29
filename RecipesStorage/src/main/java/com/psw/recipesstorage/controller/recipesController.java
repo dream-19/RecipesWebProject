@@ -1,9 +1,8 @@
 package com.psw.recipesstorage.controller;
 
-import com.psw.recipeStorage.mo.Difficulty;
-import com.psw.recipeStorage.mo.RecipeEntity;
-import com.psw.recipeStorage.mo.RecipeRepository;
-import com.psw.recipeStorage.mo.UserRepository;
+import com.psw.recipesstorage.mo.Difficulty;
+import com.psw.recipesstorage.mo.RecipeEntity;
+import com.psw.recipesstorage.mo.RecipeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +27,6 @@ public class recipesController {
     //Usiamo Autowired per creare un'istanza dell'interfaccia in automatico
     @Autowired
     private RecipeRepository recipeRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private Validator validator;
@@ -62,24 +58,6 @@ public class recipesController {
         return recipe;
     }
 
-    //Get by user id (all recipes of an user)
-    @RequestMapping(value = "/users/{id}/recipes",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<RecipeEntity> getRecipeByUserId(@PathVariable("id") Integer id) {
-        Iterable<RecipeEntity> recipes=recipeRepository.findByUsersByUserId_Id(id);
-        return recipes;
-    }
-
-    //GET by user id and recipe id
-    @RequestMapping(value = "/users/{id}/recipes/{recipeId}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public RecipeEntity getRecipeByUserIdAndRecipeId(@PathVariable("id") Integer id, @PathVariable("recipeId") Integer recipeId) {
-        RecipeEntity recipe=recipeRepository.findByUsersByUserId_IdAndId(id, recipeId);
-        return recipe;
-    }
-
     //GET by difficulty
     @RequestMapping(value = "/recipes/difficulty/{difficulty}",
             method = RequestMethod.GET,
@@ -93,7 +71,7 @@ public class recipesController {
         return recipes;
     }
 
-    //POST new recipe (with user id)
+    //POST new recipe
     @RequestMapping(value = "/recipes",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -103,17 +81,14 @@ public class recipesController {
 
         //Create all the recipes
         for (RecipeEntity recipe : recipes) {
-            //check if user exists
-            if (recipe.getUsersByUserId() == null || userRepository.findById(recipe.getUsersByUserId().getId()) == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "User not found"));
-            }
-
             //validate
             validator.validate(recipe, bindingResult);
             if (bindingResult.hasErrors()) {
                 for (FieldError fieldError : bindingResult.getFieldErrors())
                     return ResponseEntity.badRequest().body(fieldError.getDefaultMessage());
             }
+            //create also steps and ingredients if specified
+
 
             //save
             recipeRepository.save(recipe);
@@ -161,9 +136,6 @@ public class recipesController {
         if (recipe.getPhoto() != null) {
             recipeToUpdate.setPhoto(recipe.getPhoto());
         }
-        if (recipe.getSteps() != null) {
-            recipeToUpdate.setSteps(recipe.getSteps());
-        }
         if (recipe.getTime() != null) {
             recipeToUpdate.setTime(recipe.getTime());
         }
@@ -191,17 +163,6 @@ public class recipesController {
         recipeRepository.deleteAll();
     }
 
-    //DELETE all recipes of an user
-    @RequestMapping(value = "/recipes/user/{id}",
-            method = RequestMethod.DELETE)
-    @ResponseStatus( HttpStatus.NO_CONTENT) //204 or 200
-    @Transactional //operazione atomica
-    public void deleteAllRecipesOfUser(@PathVariable("id") Integer id) {
-        Iterable<RecipeEntity> recipes=recipeRepository.findByUsersByUserId_Id(id);
-        for (RecipeEntity recipe : recipes) {
-            recipeRepository.deleteById(recipe.getId());
-        }
-    }
 
     //COUNT recipes
     @RequestMapping(value = "/recipes/count",
@@ -209,20 +170,6 @@ public class recipesController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public long countRecipes() {
         int count = recipeRepository.count();
-        log.info("Recipes counted successfully");
-        return count;
-    }
-
-    //count recipes of an user
-    @RequestMapping(value = "/recipes/user/{id}/count",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public long countRecipesOfUser(@PathVariable("id") Integer id) {
-        Iterable<RecipeEntity> recipes=recipeRepository.findByUsersByUserId_Id(id);
-        int count=0;
-        for (RecipeEntity recipe : recipes) {
-            count++;
-        }
         log.info("Recipes counted successfully");
         return count;
     }

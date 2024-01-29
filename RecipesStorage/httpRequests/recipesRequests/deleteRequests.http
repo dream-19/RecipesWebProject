@@ -3,9 +3,6 @@
 DELETE http://localhost:8080/recipeStorage/recipes/3
 Accept: application/json
 
-### delete all recipes of an user
-
-DELETE http://localhost:8080/recipeStorage/recipes/user/3
 
 ### delete all recipes
 

@@ -1,5 +1,3 @@
 ### count the recipes
 GET  http://localhost:8080/recipeStorage/recipes/count
 
-### count the recipes of an user
-GET  http://localhost:8080/recipeStorage/recipes/user/1/count

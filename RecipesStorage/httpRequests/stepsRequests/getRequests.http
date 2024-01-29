@@ -1,0 +1,10 @@
+### get all steps
+
+GET http://localhost:8080/recipeStorage/steps
+Accept: application/json
+
+### get steps by recipe
+
+GET http://localhost:8080/recipeStorage/recipes/1/steps
+Accept: application/json
+
