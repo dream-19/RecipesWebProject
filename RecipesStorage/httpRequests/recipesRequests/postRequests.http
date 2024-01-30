@@ -11,6 +11,40 @@ Content-Type: application/json
   "time": 30
 }]
 
+### GOOD POST requests with ingredients and steps
+POST http://localhost:8080/recipeStorage/recipes
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "title": "Ricetta di prova",
+  "dateOfCreation": "2024-01-01",
+  "serving": 4,
+  "difficulty": "Easy",
+  "time": 30,
+  "ingredientsById": [{
+    "name": "ingrediente1",
+    "quantity": 1,
+    "unitOfMeasurement": "kg"
+    },
+    {
+      "name": "ingrediente2",
+      "quantity": 2,
+      "unitOfMeasurement": "g"
+    }],
+  "stepsById": [{
+    "stepNumber": 1,
+    "title": "title step1",
+    "description": "description step1"
+    },
+    {
+      "stepNumber": 2,
+      "title": "title step2",
+      "description": "description step2"
+    }]
+
+}]
+
 ### Bad POST requests (title missing)
 POST http://localhost:8080/recipeStorage/recipes
 Accept: application/json
@@ -22,8 +56,6 @@ Content-Type: application/json
   "difficulty": "Easy",
   "time": 30
 }]
-
-
 
 ### Bad POST requests (enum not existing)
 POST http://localhost:8080/recipeStorage/recipes

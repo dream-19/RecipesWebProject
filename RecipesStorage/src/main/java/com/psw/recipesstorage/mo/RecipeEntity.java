@@ -14,6 +14,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "recipes", schema = "RecipeDB", catalog = "")
 public class RecipeEntity {
+    //logger
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RecipeEntity.class);
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -45,12 +48,15 @@ public class RecipeEntity {
     @Basic
     @Column(name = "photo", nullable = true, length = 255)
     private String photo;
-    @OneToMany(mappedBy = "recipesByRecipeId")
-    @JsonIgnore
+
+    // cascadeType.ALL = to post also ingredients aumatically
+    //fetch lazy = when I do a GET requests ingredients are not loaded
+    @OneToMany(mappedBy = "recipesByRecipeId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@JsonIgnore
     private Collection<IngredientEntity> ingredientsById;
 
-    @OneToMany(mappedBy = "recipesByRecipeId")
-    @JsonIgnore
+    @OneToMany(mappedBy = "recipesByRecipeId", cascade = CascadeType.ALL, fetch = FetchType.LAZY) //add steps automatically
+    //@JsonIgnore
     private Collection<StepEntity> stepsById; //manually added
 
     public Integer getId() {

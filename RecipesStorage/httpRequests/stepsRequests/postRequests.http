@@ -10,6 +10,17 @@ Content-Type: application/json
   "description": "Step 8 description"
 }]
 
+### BAD POST: trying to add the same step
+POST http://localhost:8080/recipeStorage/recipes/1/steps
+Accept: application/json
+Content-Type: application/json
+
+[{
+  "stepNumber": 9,
+  "title": "Step 8",
+  "description": "Step 8 description"
+}]
+
 
 
 

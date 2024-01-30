@@ -6,3 +6,14 @@ Content-Type: application/json
   "title": "New title to the step :)"
 }
 
+### bad put requests (wrong step number -> already exists)
+
+PUT http://localhost:8080/recipeStorage/steps/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "stepNumber": 2 ,
+  "title": "New11 title to the step :)"
+}
+

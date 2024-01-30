@@ -1,5 +1,6 @@
 package com.psw.recipesstorage.mo;
 /* Interfaccia per definire le query */
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public interface RecipeRepository extends PagingAndSortingRepository<RecipeEntit
     RecipeEntity findByTitle(String title);
 
     Iterable<RecipeEntity> findByDifficulty(Difficulty difficulty);
+
 
 
 }

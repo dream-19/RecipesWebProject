@@ -1,8 +1,6 @@
 package com.psw.recipesstorage.controller;
 
-import com.psw.recipesstorage.mo.Difficulty;
-import com.psw.recipesstorage.mo.RecipeEntity;
-import com.psw.recipesstorage.mo.RecipeRepository;
+import com.psw.recipesstorage.mo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +34,7 @@ public class recipesController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<RecipeEntity> getRecipes() {
-        Iterable recipes=recipeRepository.findAll();
+        Iterable<RecipeEntity> recipes=recipeRepository.findAll();
         return recipes;
     }
 
@@ -78,7 +76,7 @@ public class recipesController {
     @ResponseStatus( HttpStatus.CREATED) //201
     @Transactional
     public ResponseEntity<?> createRecipe(@Valid @RequestBody List<RecipeEntity> recipes, BindingResult bindingResult) {
-
+        log.info("STARTTTTT");
         //Create all the recipes
         for (RecipeEntity recipe : recipes) {
             //validate
@@ -87,14 +85,49 @@ public class recipesController {
                 for (FieldError fieldError : bindingResult.getFieldErrors())
                     return ResponseEntity.badRequest().body(fieldError.getDefaultMessage());
             }
-            //create also steps and ingredients if specified
+            //save also new ingredients if specified
+            // Check if ingredients are received
+            if (recipe.getIngredientsById() != null)
+                if( !recipe.getIngredientsById().isEmpty()) {
+                for (IngredientEntity ingredient : recipe.getIngredientsById()) {
+                    //Validate the ingredient
+                    validator.validate(ingredient, bindingResult);
+                    if (bindingResult.hasErrors()) {
+                        for (FieldError fieldError : bindingResult.getFieldErrors())
+                            return ResponseEntity.badRequest().body(fieldError.getDefaultMessage());
+                    }
+                    // Set the recipe reference to this one
+                    ingredient.setRecipesByRecipeId(recipe); // Set the recipe reference
+                }
+                log.info("ingredients found for recipe: {}: {}", recipe.getTitle(), recipe.getIngredientsById());
+            } else {
+                log.info("No Ingredients received for recipe {}", recipe.getTitle() );
+            }
 
+            //save also new steps if specified
+            // Check if steps are received
+            if (recipe.getStepsById() != null)
+                if( !recipe.getStepsById().isEmpty()) {
+                for (StepEntity step : recipe.getStepsById()) {
+                    //Validate the step
+                    validator.validate(step, bindingResult);
+                    if (bindingResult.hasErrors()) {
+                        for (FieldError fieldError : bindingResult.getFieldErrors())
+                            return ResponseEntity.badRequest().body(fieldError.getDefaultMessage());
+                    }
+                    // Set the recipe reference to this one
+                    step.setRecipesByRecipeId(recipe); // Set the recipe reference
+                }
+                log.info("steps found for recipe: {}: {}", recipe.getTitle(), recipe.getStepsById());
+            } else {
+                log.info("No Steps received for recipe {}", recipe.getTitle() );
+            }
 
-            //save
+            //save the new recipe
             recipeRepository.save(recipe);
 
         }
-        return ResponseEntity.ok("Recipes created");
+        return ResponseEntity.ok("Recipes created successfully");
     }
 
     //PUT: update recipe by id

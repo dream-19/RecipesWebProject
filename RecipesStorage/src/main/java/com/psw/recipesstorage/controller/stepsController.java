@@ -62,7 +62,6 @@ public class stepsController {
         if (recipe == null) {
             return ResponseEntity.notFound().build();
         }
-        //Check if I am the owner of the recipe (?)
         for(StepEntity step: steps) {
             //validate
             validator.validate(step, bindingResult);
@@ -71,6 +70,10 @@ public class stepsController {
                     return ResponseEntity.badRequest().body(fieldError.getDefaultMessage());
             }
             step.setRecipesByRecipeId(recipe);
+            //check if the same step is already present in the recipe (can't have the same step_number)
+            if (stepRepository.findByRecipesByRecipeId_IdAndStepNumber(recipe_id, step.getStepNumber()) != null) {
+                return ResponseEntity.badRequest().body("Step number " + step.getStepNumber() + " already present in the recipe");
+            }
             stepRepository.save(step);
         }
 
@@ -98,6 +101,11 @@ public class stepsController {
 
         //update step if present
         if (step.getStepNumber() != null)
+            //check if we don't have already the same step number (and is not the same step)
+            if (stepRepository.findByRecipesByRecipeId_IdAndStepNumber(stepToUpdate.getRecipesByRecipeId().getId(), step.getStepNumber()) != null && stepRepository.findByRecipesByRecipeId_IdAndStepNumber(stepToUpdate.getRecipesByRecipeId().getId(), step.getStepNumber()).getId() != stepToUpdate.getId()){
+                return ResponseEntity.badRequest().body("Step number " + step.getStepNumber() + " already present in the recipe");
+            }
+            else
             stepToUpdate.setStepNumber(step.getStepNumber());
         if (step.getDescription() != null)
             stepToUpdate.setDescription(step.getDescription());

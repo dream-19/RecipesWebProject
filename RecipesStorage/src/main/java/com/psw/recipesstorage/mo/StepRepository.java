@@ -20,4 +20,6 @@ public interface StepRepository extends PagingAndSortingRepository<StepEntity, I
     void deleteByRecipesByRecipeId_Id(Integer recipeId);
 
     int countByRecipesByRecipeId_Id(Integer recipeId);
+
+    StepEntity findByRecipesByRecipeId_IdAndStepNumber(Integer recipeId, Integer stepNumber);
 }
