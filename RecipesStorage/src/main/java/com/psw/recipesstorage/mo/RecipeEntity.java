@@ -46,8 +46,8 @@ public class RecipeEntity {
     @Column(name = "difficulty", nullable = false)
     private Difficulty difficulty;
     @Basic
-    @Column(name = "photo", nullable = true, length = 255)
-    private String photo;
+    @Column(name = "photo", nullable = true, columnDefinition = "LONGTEXT")
+    private String photo; //will store base64 images
 
     // cascadeType.ALL = to post also ingredients aumatically
     //fetch lazy = when I do a GET requests ingredients are not loaded

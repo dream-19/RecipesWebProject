@@ -9,7 +9,7 @@ The database is written in MySQL and is formed by three tables:
     * description (nullable)
     * time
     * difficulty (enum)
-    * photo (nullable)
+    * photo (nullable, LONGTEXT to save the base64 string of the image)
 - ingredients with attributes:
     * id (primary key)
     * name
