@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS recipes (
     description TEXT,
     time INT NOT NULL, -- Assuming this is in minutes
     difficulty ENUM('Easy', 'Medium', 'Hard') NOT NULL,
-    photo VARCHAR(255)
+    photo LONGTEXT
 );
 
 -- Create Ingredients Table
