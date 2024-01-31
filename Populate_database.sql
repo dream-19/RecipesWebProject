@@ -1,4 +1,5 @@
 -- Disable foreign key checks
+use RecipeDB;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- clean tables

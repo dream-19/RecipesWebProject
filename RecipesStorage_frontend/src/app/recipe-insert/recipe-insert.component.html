@@ -1,0 +1,69 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="container mt-4">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title*</label>
+      <input type="text" class="form-control" id="title" formControlName="title" placeholder="Enter recipe title">
+    </div>
+  
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" formControlName="description" rows="3" placeholder="Enter recipe description"></textarea>
+    </div>
+  
+    <div class="mb-3">
+      <label for="serving" class="form-label">Serving*</label>
+      <input type="number" class="form-control" id="serving" formControlName="serving" placeholder="Number of servings">
+    </div>
+  
+    <div class="mb-3">
+      <label for="time" class="form-label">Time (minutes)*</label>
+      <input type="number" class="form-control" id="time" formControlName="time" placeholder="Preparation time in minutes">
+    </div>
+  
+    <div class="mb-3">
+      <label for="difficulty" class="form-label">Difficulty*</label>
+      <select class="form-select" id="difficulty" formControlName="difficulty">
+        <option value="">Select difficulty</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+    </div>
+
+    <!-- Insert all the ingredients that are neeeded (name, quantity, unitOfMeasurement) -->
+     <!-- Ingredients section -->
+     <p>TODO: ADD INGREDIENT</p>
+     <p>TODO: ADD STEPS</p>
+      <!-- Ingredients section 
+      <div *ngIf="recipeForm && ingredientsControls">
+        <div *ngFor="let ingredientGroup of ingredientsControls.controls; let i = index" [formGroupName]="i">
+       
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter ingredient name">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control" id="quantity" formControlName="quantity" placeholder="Enter ingredient quantity">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" id="unitOfMeasurement" formControlName="unitOfMeasurement" placeholder="Enter ingredient unit of measurement">
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-danger" (click)="removeIngredient(i)">Remove</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    --> 
+      
+    
+  
+    <div class="mb-3">
+      <label for="photo" class="form-label">Photo</label>
+      <input class="form-control" type="file" id="photo" (change)="onFileChange($event)">
+    </div>
+  
+    <!-- Add fields for ingredients and steps as needed -->
+  
+    <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">Submit</button>
+  </form>
+  

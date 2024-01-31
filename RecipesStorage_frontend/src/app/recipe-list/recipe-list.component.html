@@ -5,6 +5,13 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col text-center">
+            <button type="button" class="btn btn-primary" (click)="showRecipeForm()">Add Recipe</button>
+            <button type="button" class="btn btn-danger" (click)="deleteAllRecipes()">Delete All</button>
+        </div>
+    </div>
+
     <div class="row ">
     <div class="col-md-3 " *ngFor="let recipe of recipes">
         <div class="card mb-4">
@@ -20,7 +27,8 @@
             <!-- Display base64 photo if present-->
             <img *ngIf="recipe.photo" [src]="recipe.photo" class="card-img-top" alt="...">
             <div class="text-center"> <!-- Add text-center class here -->
-                <button type="button" class="btn btn-primary">Show</button>
+                <button type="button" class="btn btn-primary" (click)="showRecipeDetails(recipe.id)">Show</button>
+                <button type="button" class="btn btn-danger" (click)="deleteRecipe(recipe.id)">Delete</button>
             </div>
         </div>
         </div>

@@ -1,0 +1,41 @@
+<!-- since the object recipe could be undefined I use ? -->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Recipe</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <img *ngIf="recipe?.photo" [src]="recipe?.photo" class="card-img-top" alt="..."> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Created on: {{recipe?.dateOfCreation | date: 'dd-MM-yyyy'}}</p>
+                    <p> Serving: {{ recipe?.serving}}</p>
+                    <p>Time: {{ recipe?.time }} min</p>
+                    <p>Difficulty: {{ recipe?.difficulty }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1>{{ recipe?.title }}</h1>
+            <p>Description: {{ recipe?.description }}</p>
+            <h3>Ingredients</h3>
+            <ul>
+                <li *ngFor="let ingredient of recipe?.ingredientsById">
+                    {{ ingredient.name }} {{ ingredient.quantity }} {{ingredient.unitOfMeasurement}} 
+                </li> 
+            </ul>
+            <h3>Steps</h3>
+            <ol>
+                <li *ngFor="let step of recipe?.stepsById">
+                     {{ step.title}}: {{ step.description}}
+                </li> 
+            </ol>
+        </div>
+    </div>
+</div>
