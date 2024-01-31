@@ -1,8 +1,29 @@
-<h1>recipe-list works! </h1>
-<div *ngFor="let recipe of recipes">
-    <h3>{{ recipe.title }}</h3>
-</div>
+<div class="container">
+    <div class="row "> 
+        <div class="col text-center">
+            <h1>List of Recipes (Total recipes): {{ count }}</h1>
+        </div>
+    </div>
 
-<!-- trying bootstrap -->
-<button type="button" class="btn btn-primary">Primary</button>
-  
+    <div class="row ">
+    <div class="col-md-3 " *ngFor="let recipe of recipes">
+        <div class="card mb-4">
+        <div class="card-body">
+            <h4 class="card-title">Title: {{ recipe.title }}</h4>
+            <p class="card-text">Description: {{ recipe.description }}</p>
+            <p class="card-text">ID: {{ recipe.id }}</p>
+            <!-- display dateOfCreation taking only the date in fromat dd-mm-yyyy -->
+            <p class="card-text">Date of creation: {{ recipe.dateOfCreation | date: 'dd-MM-yyyy' }}</p>
+            <p class="card-text">Serving: {{ recipe.serving }}</p>
+            <p class="card-text">Time: {{ recipe.time }} minutes</p>
+            <p class="card-text">Difficulty: {{ recipe.difficulty }}</p>
+            <!-- Display base64 photo if present-->
+            <img *ngIf="recipe.photo" [src]="recipe.photo" class="card-img-top" alt="...">
+            <div class="text-center"> <!-- Add text-center class here -->
+                <button type="button" class="btn btn-primary">Show</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
