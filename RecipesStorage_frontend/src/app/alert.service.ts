@@ -1,25 +1,30 @@
-// alert.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+// Define an interface for the alert messages
+interface AlertMessage {
+  message: string;
+  type: 'success' | 'danger';
+}
+
 @Injectable({ providedIn: 'root' })
 export class AlertService {
-  //to send message to alert component and type of alert
-  private messageSubject: BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined);
+  // Modify the BehaviorSubject to handle an AlertMessage object
+  private messageSubject: BehaviorSubject<AlertMessage | undefined> = new BehaviorSubject<AlertMessage | undefined>(undefined);
 
-  getMessage(): Observable<string | undefined> {
+  // Update the return type of the getter to match the AlertMessage object
+  getMessage(): Observable<AlertMessage | undefined> {
     return this.messageSubject.asObservable();
   }
 
-  getMessageError(): Observable<string | undefined> {
-    return this.messageSubject.asObservable();
-  }
 
+  // Update setMessage to include the type 'success'
   setMessage(message: string) {
-    this.messageSubject.next(message);
+    this.messageSubject.next({ message, type: 'success' });
   }
 
+  // Update setMessageError to include the type 'danger'
   setMessageError(message: string) {
-    this.messageSubject.next(message);
+    this.messageSubject.next({ message, type: 'danger' });
   }
 }

@@ -65,10 +65,15 @@ export class RecipeInsertComponent implements OnInit {
 
   newStep(): FormGroup {
     return this.fb.group({
-      stepNumber: ['', Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
     });
+  }
+
+  addStepFollowingThis(index: number) {
+    this.stepsById.insert(index + 1, this.newStep());
+    console.log("adding:"+ index + 1);
+
   }
 
   addStep() {
@@ -99,6 +104,16 @@ export class RecipeInsertComponent implements OnInit {
 
   onSubmit() {
     if (this.recipeForm.valid ) {
+
+      // Add the step number to each step
+      const stepsWithNumbers = this.stepsById.value.map((step: any, index: number) => ({
+        ...step,
+        stepNumber: index + 1 // Assign step number based on position in the array
+      }));
+
+      this.recipeForm.value.stepsById = stepsWithNumbers;
+    
+
       //add the dateOfCreation
       this.recipeForm.value.dateOfCreation = new Date().toISOString().slice(0, 10);
       console.log(this.recipeForm.value);

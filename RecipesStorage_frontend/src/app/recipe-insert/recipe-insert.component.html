@@ -1,85 +1,111 @@
 <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="container mt-4">
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <label for="title" class="form-label">Title*</label>
       <input type="text" class="form-control" id="title" formControlName="title" placeholder="Enter recipe title">
     </div>
   
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <label for="description" class="form-label">Description</label>
       <textarea class="form-control" id="description" formControlName="description" rows="3" placeholder="Enter recipe description"></textarea>
     </div>
   
-    <div class="mb-3">
-      <label for="serving" class="form-label">Serving*</label>
-      <input type="number" class="form-control" id="serving" formControlName="serving" placeholder="Number of servings">
+    <div class="row mb-3">
+      <div class="col">
+          <label for="serving" class="form-label">Serving*</label>
+          <input type="number" class="form-control" id="serving" formControlName="serving" placeholder="Number of servings">
+        
+      </div>
+      <div class="col">
+          <label for="time" class="form-label">Time (minutes)*</label>
+          <input type="number" class="form-control" id="time" formControlName="time" placeholder="Preparation time in minutes">
+      </div>
+      <div class="col">
+          <label for="difficulty" class="form-label">Difficulty*</label>
+          <select class="form-select" id="difficulty" formControlName="difficulty">
+            <option value="">Select difficulty</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+      </div>
     </div>
   
-    <div class="mb-3">
-      <label for="time" class="form-label">Time (minutes)*</label>
-      <input type="number" class="form-control" id="time" formControlName="time" placeholder="Preparation time in minutes">
-    </div>
-  
-    <div class="mb-3">
-      <label for="difficulty" class="form-label">Difficulty*</label>
-      <select class="form-select" id="difficulty" formControlName="difficulty">
-        <option value="">Select difficulty</option>
-        <option value="Easy">Easy</option>
-        <option value="Medium">Medium</option>
-        <option value="Hard">Hard</option>
-      </select>
-    </div>
-
-    
-      
-  
-  
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <label for="photo" class="form-label">Photo</label>
       <input class="form-control" type="file" id="photo" (change)="onFileChange($event)">
     </div>
   
 
     <!-- ingredientsById List -->
-    <div formArrayName="ingredientsById">
-      <div *ngFor="let ingredient of ingredientsById.controls; let i=index" [formGroupName]="i">
-        <div class="form-group">
-          <label for="name">Ingredient Name*</label>
-          <input type="text" class="form-control" formControlName="name" placeholder="Enter ingredient name">
+    <h5>Ingredients</h5>
+    <div class="form-group mb-3">
+      <div formArrayName="ingredientsById">
+        <div *ngFor="let ingredient of ingredientsById.controls; let i=index" [formGroupName]="i">
+          <div class="border border-info mb-3">
+            <div class="form-group m-2">
+              <label for="name">Ingredient Name*</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Enter ingredient name">
+          
+              <div class="row mb-3">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="quantity">Quantity*</label>
+                    <input type="number" class="form-control" formControlName="quantity" placeholder="Enter ingredient quantity">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group mb-2">
+                    <label for="unitOfMeasurement">Unit of Measurement*</label>
+                    <input type="text" class="form-control" formControlName="unitOfMeasurement" placeholder="Enter unit of measurement">
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="button" class="btn btn-danger " (click)="removeIngredient(i)">Remove Ingredient</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="quantity">Quantity*</label>
-          <input type="number" class="form-control" formControlName="quantity" placeholder="Enter ingredient quantity">
-        </div>
-        <div class="form-group">
-          <label for="unitOfMeasurement">Unit of Measurement*</label>
-          <input type="text" class="form-control" formControlName="unitOfMeasurement" placeholder="Enter unit of measurement">
-        </div>
-        <button type="button" class="btn btn-danger" (click)="removeIngredient(i)">Remove Ingredient</button>
+        <button type="button" class="btn btn-info" (click)="addIngredient()">Add Ingredient</button>
       </div>
-      <button type="button" class="btn btn-primary" (click)="addIngredient()">Add Ingredient</button>
     </div>
 
     <!-- stepsById list -->
-    <div formArrayName="stepsById">
-      <div *ngFor="let step of stepsById.controls; let i=index" [formGroupName]="i">
-        <div class="form-group">
-          <label for="stepNumber"> Step Number* </label>
-          <input type="number" class="form-control" formControlName="stepNumber" placeholder="Enter step number">
+    <h5>Steps</h5>
+    <div class="form-group mb-3">
+      <div formArrayName="stepsById">
+        <div *ngFor="let step of stepsById.controls; let i=index" [formGroupName]="i">
+          <div class="border border-success mb-3 mt-3">
+            <div class="form-group m-2">
+              <h6>Step {{ i + 1 }}</h6>
+              <div class="form-group">
+                <label for="title">Step Title*</label>
+                <input type="text" class="form-control" formControlName="title" placeholder="Enter step title">
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="description">Step Description*</label>
+                <textarea class="form-control" formControlName="description" rows="3" placeholder="Enter step description"></textarea>
+              </div>
+              
+              <div class="text-center">
+                <button type="button" class="btn btn-danger" (click)="removeStep(i)">Remove Step</button>
+              </div>
+      
+            </div>
+          </div>
+          <button type="button" class="btn btn-success" (click)="addStepFollowingThis(i)">Add Step</button>
         </div>
-        <div class="form-group">
-          <label for="title">Step Title*</label>
-          <input type="text" class="form-control" formControlName="title" placeholder="Enter step title">
+        <!-- diplay add step button only if there aren't any step-->
+        <div *ngIf="stepsById.length === 0">
+          <button type="button" class="btn btn-success" (click)="addStep()">Add Step</button>
         </div>
-        <div class="form-group">
-          <label for="description">Step Description*</label>
-          <textarea class="form-control" formControlName="description" rows="3" placeholder="Enter step description"></textarea>
-        </div>
-        <button type="button" class="btn btn-danger" (click)="removeStep(i)">Remove Step</button>
       </div>
-      <button type="button" class="btn btn-primary" (click)="addStep()">Add Step</button>
     </div>
-  
-    <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">Submit</button>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">Submit</button>
+    </div>
   </form>
   
 

@@ -1,4 +1,3 @@
-// alert.component.ts
 import { Component } from '@angular/core';
 import { AlertService } from '../alert.service';
 
@@ -8,22 +7,23 @@ import { AlertService } from '../alert.service';
 })
 export class AlertComponent {
   message: string | undefined;
-  type: string | undefined;
+  type: 'success' | 'danger' | undefined; // Update type to match the service
 
-  //get message and type of alert
   constructor(private alertService: AlertService) {
-    this.alertService.getMessage().subscribe((message) => {
-      this.message = message;
-      this.type = 'success';
-    });
-
-    this.alertService.getMessageError().subscribe((message) => {
-      this.message = message;
-      this.type = 'danger';
+    this.alertService.getMessage().subscribe((alertMessage) => {
+      if (alertMessage) { // Ensure alertMessage is not undefined
+        this.message = alertMessage.message;
+        this.type = alertMessage.type;
+      } else {
+        // Handle the case where alertMessage is undefined, e.g., to clear the message
+        this.message = undefined;
+        this.type = undefined;
+      }
     });
   }
 
   closeAlert() {
     this.message = undefined;
+    this.type = undefined; // Also clear the type when closing the alert
   }
 }

@@ -2,7 +2,10 @@
 <!-- if type = good alert success-->
 <!-- if type = bad alert danger-->
 
-<div *ngIf="message" class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
-    {{ message }}
+<div *ngIf="message" class="alert alert-{{ type }} alert-dismissible fade show fixed-top rounded-0" role="alert">
+    <div class="text-center">
+        <strong>{{ message }}</strong>
+    </div>
+    
     <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
 </div>
