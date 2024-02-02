@@ -1,41 +1,64 @@
-<!-- since the object recipe could be undefined I use ? -->
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1>Recipe</h1>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h1 >{{ recipe?.title }}</h1>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-4">
-            <div class="row">
-                <div class="col-md-12">
-                    <img *ngIf="recipe?.photo" [src]="recipe?.photo" class="card-img-top" alt="..."> 
+            <div class="card mb-3">
+                <img *ngIf="recipe?.photo; else placeholder" [src]="recipe?.photo" class="card-img-top" alt="Recipe photo">
+                <ng-template #placeholder>
+                    <img [src]="placeholderphoto" class="card-img-top" alt="Placeholder photo"/>
+                </ng-template>
+                <div class="card-body bg-light">
+                    <p class="card-text"><strong>Created on:</strong> {{recipe?.dateOfCreation | date: 'longDate'}}</p>
+                    <p class="card-text"><strong>Serving:</strong> {{ recipe?.serving }}</p>
+                    <p class="card-text"><strong>Time:</strong> {{ recipe?.time }} min</p>
+                    <p class="card-text"><strong>Difficulty:</strong> {{ recipe?.difficulty }}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Created on: {{recipe?.dateOfCreation | date: 'dd-MM-yyyy'}}</p>
-                    <p> Serving: {{ recipe?.serving}}</p>
-                    <p>Time: {{ recipe?.time }} min</p>
-                    <p>Difficulty: {{ recipe?.difficulty }}</p>
+
+            <div class="row mt-4">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-primary  m-2" (click)="editRecipe(recipe!.id)">Edit</button>
+                    <button type="button" class="btn btn-secondary m-2" (click)="goBack()">Back</button>
+                    <button type="button" class="btn btn-danger m-2" (click)="deleteRecipe(recipe!.id)">Delete</button>
+                    
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <h1>{{ recipe?.title }}</h1>
-            <p>Description: {{ recipe?.description }}</p>
-            <h3>Ingredients</h3>
-            <ul>
-                <li *ngFor="let ingredient of recipe?.ingredientsById">
-                    {{ ingredient.name }} {{ ingredient.quantity }} {{ingredient.unitOfMeasurement}} 
-                </li> 
-            </ul>
-            <h3>Steps</h3>
-            <ol>
-                <li *ngFor="let step of recipe?.stepsById">
-                     {{ step.title}}: {{ step.description}}
-                </li> 
-            </ol>
+
+        
+            <div class="col-md-8">
+                <div *ngIf="recipe?.description">
+                    <div class="mb-3">
+                        <h2>Description</h2>
+                        <p>{{ recipe?.description }}</p>
+                    </div>
+                </div>
+
+            <div class="mb-3">
+                <h3>Ingredients</h3>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-warning" *ngFor="let ingredient of recipe?.ingredientsById">
+                        <strong>{{ ingredient.name }}:</strong> {{ ingredient.quantity }} {{ ingredient.unitOfMeasurement }}
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Steps</h3>
+                <!-- list bold -->
+                <ol class="list-group list-group-numbered list-group-item-warning">
+                    <li class="list-group-item" *ngFor="let step of recipe?.stepsById">
+                        <strong>{{ step.title }}</strong><br/> {{ step.description }}
+                    </li>
+                </ol>
+            </div>
         </div>
     </div>
+
+    
 </div>

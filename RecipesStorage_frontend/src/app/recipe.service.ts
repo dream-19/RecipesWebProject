@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Recipe } from './Recipes';
+import { Ingredient } from './Ingredients';
+import { Step } from './Steps';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,31 @@ export class RecipeService {
   //add a new recipe
   addRecipe(recipe: Recipe){
     return this.http.post(this.apiUrl+'recipes', [recipe], { responseType: 'text' });
+  }
+
+  //add array of ingredients to a recipe
+  addIngredientsInRecipe(id: number, ingredients: Ingredient[]){
+    return this.http.post(this.apiUrl+'recipes/'+id+'/ingredients', ingredients, { responseType: 'text' });
+  }
+
+  //add array of steps to a recipe
+  addStepsInRecipe(id: number, steps: Step[]){
+    return this.http.post(this.apiUrl+'recipes/'+id+'/steps', steps, { responseType: 'text' });
+  }
+
+  //update a recipe (put requests)
+  updateRecipe(id: number, recipe: Recipe){
+    return this.http.put(this.apiUrl+'recipes/'+id, recipe, { responseType: 'text' });
+  }
+
+  //delete all steps of a recipe
+  deleteAllSteps(id: number){
+    return this.http.delete(this.apiUrl+'recipes/'+id+'/steps', { responseType: 'text' });
+  }
+
+  //delete all ingredients of a recipe
+  deleteAllIngredients(id: number){
+    return this.http.delete(this.apiUrl+'recipes/'+id+'/ingredients', { responseType: 'text' });
   }
 
   //delete a recipe

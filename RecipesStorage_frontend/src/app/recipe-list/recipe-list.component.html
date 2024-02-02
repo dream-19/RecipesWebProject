@@ -28,6 +28,7 @@
             <img *ngIf="recipe.photo" [src]="recipe.photo" class="card-img-top" alt="...">
             <div class="text-center"> <!-- Add text-center class here -->
                 <button type="button" class="btn btn-primary" (click)="showRecipeDetails(recipe.id)">Show</button>
+                <button type="button" class="btn btn-warning" (click)="editRecipe(recipe.id)">Edit</button>
                 <button type="button" class="btn btn-danger" (click)="deleteRecipe(recipe.id)">Delete</button>
             </div>
         </div>

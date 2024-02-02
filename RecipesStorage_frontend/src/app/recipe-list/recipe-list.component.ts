@@ -23,8 +23,6 @@ export class RecipeListComponent implements OnInit {
     // Retrieve all the recipes from the API
     this.loadRecipes();
     this.countAllRecipes();
-    
-
   }
 
   loadRecipes() {
@@ -67,6 +65,11 @@ export class RecipeListComponent implements OnInit {
   //add a new recipe with form
   showRecipeForm() {
     this.router.navigate(['/recipe']);
+  }
+
+  //edit a recipe
+  editRecipe(id: number) {
+    this.router.navigate(['/recipe', id, 'edit']);
   }
 
   //delete a recipe

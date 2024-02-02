@@ -14,6 +14,7 @@ import { AlertService } from '../alert.service';
 
 export class RecipeInsertComponent implements OnInit {
   recipeForm!: FormGroup; //! to tell ts that this variable will be initialized later
+  photoPreview: string | ArrayBuffer | null = null; 
  
   constructor(
     private fb: FormBuilder,
@@ -98,6 +99,7 @@ export class RecipeInsertComponent implements OnInit {
         this.recipeForm.patchValue({
           photo: reader.result as string
         });
+        this.photoPreview = reader.result;
       };
     }
   }
