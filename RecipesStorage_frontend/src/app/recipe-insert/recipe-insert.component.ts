@@ -30,30 +30,55 @@ export class RecipeInsertComponent implements OnInit {
       time: ['', Validators.required],
       difficulty: ['', Validators.required],
       photo: [''], // Photo will be a base64 string
-      ingredients: this.fb.array([]) 
+      ingredientsById: this.fb.array([]),
+      stepsById: this.fb.array([]), 
      
     });
+    
   }
 
-  // Add a new ingredient group to the ingredients FormArray
-  addIngredient() {
-    const ingredientGroup = this.fb.group({
-      name: [''],
-      quantity: [''],
-      unitOfMeasurement: ['']
+  //Method to add the ingredients
+  get ingredientsById(): FormArray {
+    return this.recipeForm.get('ingredientsById') as FormArray;
+  }
+  
+  newIngredient(): FormGroup {
+    return this.fb.group({
+      name: ['', Validators.required],
+      quantity: ['', Validators.required],
+      unitOfMeasurement: ['', Validators.required],
     });
-    this.ingredients.push(ingredientGroup);
   }
-
-  // Remove an ingredient group from the ingredients FormArray
+  
+  addIngredient() {
+    this.ingredientsById.push(this.newIngredient());
+  }
+  
   removeIngredient(index: number) {
-    this.ingredients.removeAt(index);
+    this.ingredientsById.removeAt(index);
   }
 
-  // Getter for the ingredients FormArray
-  get ingredients() {
-    return this.recipeForm.get('ingredients') as FormArray;
+  //Method to add the steps
+  get stepsById(): FormArray {
+    return this.recipeForm.get('stepsById') as FormArray;
   }
+
+  newStep(): FormGroup {
+    return this.fb.group({
+      stepNumber: ['', Validators.required],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+    });
+  }
+
+  addStep() {
+    this.stepsById.push(this.newStep());
+  }
+
+  removeStep(index: number) {
+    this.stepsById.removeAt(index);
+  }
+  
 
   // This method is called whenever the user selects an image file (convert to base64 string to store the photo in the db)
   onFileChange(event: Event) {
@@ -73,14 +98,14 @@ export class RecipeInsertComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.recipeForm.valid) {
+    if (this.recipeForm.valid ) {
       //add the dateOfCreation
       this.recipeForm.value.dateOfCreation = new Date().toISOString().slice(0, 10);
       console.log(this.recipeForm.value);
       this.recipeService.addRecipe(this.recipeForm.value).subscribe({
         next: (res) => {
           // Handle the response
-          console.log("added"+ res);
+          //console.log("added"+ res);
           this.router.navigate(['/']);
           this.alertService.setMessage('Recipes Added Successfully');
 

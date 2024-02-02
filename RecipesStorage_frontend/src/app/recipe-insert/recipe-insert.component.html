@@ -29,41 +29,58 @@
       </select>
     </div>
 
-    <!-- Insert all the ingredients that are neeeded (name, quantity, unitOfMeasurement) -->
-     <!-- Ingredients section -->
-     <p>TODO: ADD INGREDIENT</p>
-     <p>TODO: ADD STEPS</p>
-      <!-- Ingredients section 
-      <div *ngIf="recipeForm && ingredientsControls">
-        <div *ngFor="let ingredientGroup of ingredientsControls.controls; let i = index" [formGroupName]="i">
-       
-          <div class="row">
-            <div class="col">
-              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter ingredient name">
-            </div>
-            <div class="col">
-              <input type="number" class="form-control" id="quantity" formControlName="quantity" placeholder="Enter ingredient quantity">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" id="unitOfMeasurement" formControlName="unitOfMeasurement" placeholder="Enter ingredient unit of measurement">
-            </div>
-            <div class="col">
-              <button type="button" class="btn btn-danger" (click)="removeIngredient(i)">Remove</button>
-            </div>
-          </div>
-        </div>
-    </div>
-    --> 
-      
     
+      
+  
   
     <div class="mb-3">
       <label for="photo" class="form-label">Photo</label>
       <input class="form-control" type="file" id="photo" (change)="onFileChange($event)">
     </div>
   
-    <!-- Add fields for ingredients and steps as needed -->
+
+    <!-- ingredientsById List -->
+    <div formArrayName="ingredientsById">
+      <div *ngFor="let ingredient of ingredientsById.controls; let i=index" [formGroupName]="i">
+        <div class="form-group">
+          <label for="name">Ingredient Name*</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Enter ingredient name">
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity*</label>
+          <input type="number" class="form-control" formControlName="quantity" placeholder="Enter ingredient quantity">
+        </div>
+        <div class="form-group">
+          <label for="unitOfMeasurement">Unit of Measurement*</label>
+          <input type="text" class="form-control" formControlName="unitOfMeasurement" placeholder="Enter unit of measurement">
+        </div>
+        <button type="button" class="btn btn-danger" (click)="removeIngredient(i)">Remove Ingredient</button>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="addIngredient()">Add Ingredient</button>
+    </div>
+
+    <!-- stepsById list -->
+    <div formArrayName="stepsById">
+      <div *ngFor="let step of stepsById.controls; let i=index" [formGroupName]="i">
+        <div class="form-group">
+          <label for="stepNumber"> Step Number* </label>
+          <input type="number" class="form-control" formControlName="stepNumber" placeholder="Enter step number">
+        </div>
+        <div class="form-group">
+          <label for="title">Step Title*</label>
+          <input type="text" class="form-control" formControlName="title" placeholder="Enter step title">
+        </div>
+        <div class="form-group">
+          <label for="description">Step Description*</label>
+          <textarea class="form-control" formControlName="description" rows="3" placeholder="Enter step description"></textarea>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="removeStep(i)">Remove Step</button>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="addStep()">Add Step</button>
+    </div>
   
     <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">Submit</button>
   </form>
+  
+
   

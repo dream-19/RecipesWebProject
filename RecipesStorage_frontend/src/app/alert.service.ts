@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {
+  //to send message to alert component and type of alert
   private messageSubject: BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined);
 
   getMessage(): Observable<string | undefined> {
