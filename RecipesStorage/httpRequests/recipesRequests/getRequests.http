@@ -13,6 +13,10 @@ Accept: application/json
 GET http://localhost:8080/recipeStorage/recipes/title/Classic%20Spaghetti%20Bolognese
 Accept: application/json
 
+### GET BY title start
+GET http://localhost:8080/recipeStorage/recipes/title/start/Ch
+Accept: application/json
+
 ### get by difficulty (Easy, Medium, Hard)
 GET http://localhost:8080/recipeStorage/recipes/difficulty/Easy
 Accept: application/json

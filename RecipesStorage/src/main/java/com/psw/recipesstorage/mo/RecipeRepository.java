@@ -21,6 +21,5 @@ public interface RecipeRepository extends PagingAndSortingRepository<RecipeEntit
 
     Iterable<RecipeEntity> findByDifficulty(Difficulty difficulty);
 
-
-
+    Iterable<RecipeEntity> findByTitleStartingWith(String title);
 }

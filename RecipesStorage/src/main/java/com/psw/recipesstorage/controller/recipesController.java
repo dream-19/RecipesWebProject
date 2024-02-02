@@ -56,6 +56,15 @@ public class recipesController {
         return recipe;
     }
 
+    //GET by beginning of title
+    @RequestMapping(value = "/recipes/title/start/{title}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<RecipeEntity> getRecipeByTitleBeginning(@PathVariable("title") String title) {
+        Iterable<RecipeEntity> recipes=recipeRepository.findByTitleStartingWith(title);
+        return recipes;
+    }
+
     //GET by difficulty
     @RequestMapping(value = "/recipes/difficulty/{difficulty}",
             method = RequestMethod.GET,

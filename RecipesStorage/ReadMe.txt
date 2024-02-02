@@ -31,6 +31,7 @@ All of the values are validated before saving them in the database. If a value i
 GET http://localhost:8080/recipeStorage/recipes (all the recipes)
 GET http://localhost:8080/recipeStorage/recipes/{recipe_id} (a specific recipe)
 GET http://localhost:8080/recipeStorage/recipes/title/{recipe_title} (get recipe by title)
+GET http://localhost:8080/recipeStorage/recipes/title/start/{recipe_title} (get recipes by title starting with a specific string)
 GET http://localhost:8080/recipeStorage/recipes/difficulty/{recipe_difficulty} (get recipes by difficulty)
 POST http://localhost:8080/recipeStorage/recipes (add an array of new recipes!)
 PUT http://localhost:8080/recipeStorage/recipes/{recipe_id} (update a recipe)

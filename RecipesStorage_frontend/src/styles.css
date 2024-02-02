@@ -1,4 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+    font-family: 'Cake';
+    src: url('./assets/font/Cream\ Cake.otf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+@font-face{
+    font-family: 'Candy';
+    src: url('./assets/font/Candy\ Beans.otf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
 
+  @font-face{
+    font-family: 'Crispy';
+    src: url('./assets/font/Crispy\ Cream.otf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
 
+  @font-face{
+    font-family: 'Lemon';
+    src: url('./assets/font/Lemon\ Days.otf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.custom-bg-orange {
+    background-color: #ff9277 !important; /* A nice shade of orange. Adjust the color as you see fit. */
+  }
+
+.title-class {
+    color: black;
+    font-size: 35px;
+    font-family: 'Lemon', sans-serif;
+  
+}
+
+.btn-primary{
+    background-color: #f38468  !important;
+    border-color: #f38468  !important;
+    color: white;
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+  }
+  
+  .btn-primary:hover {
+    background-color: #e67357 !important; 
+  }
+
+  .border-primary{
+    border: 3px solid #ffd2b5 !important;
+  }
+
+  .btn-secondary{
+    background-color: #436793 !important;
+    border-color: #436793 !important;
+    color: white;
+    transition: background-color 0.3s, border-color 0.3s; 
+  }
+  
+  .btn-secondary:hover{
+    background-color: #355988 !important; 
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover for a "lifting" effect */
+  }
+
+  .btn-danger{
+    background-color: rgb(202, 39, 39);
+  }
+
+  .btn-success{
+    background-color: #54c1c5 !important;
+    border-color: #54c1c5 !important;
+    
+  }
+
+  .btn-success:hover{
+    background-color: #34a1a5 !important; 
+  }
+ 
+  .border-success{
+    border: 3px solid #b3f0f3 !important;
+  }
+
+  .custom-img-size {
+    max-height: 250px; /* Limt the image height */
+    width: auto; /* Keep the image width responsive */
+    object-fit: cover; /* Cover the area without distorting the image */
+  }
+  
+
+.alert-success{
+    background-color: #8dcceb !important;
+    border-color: #71b9de !important;
+    color: rgb(4, 4, 32) !important;
+}

@@ -28,6 +28,21 @@ export class RecipeService {
     return this.http.get(this.apiUrl+'recipes/'+id) as Observable<Recipe>;
   }
 
+  //count ingredients of a recipe
+  countIngredientsOfRecipe(id: number): Observable<number> {
+    return this.http.get(this.apiUrl+'recipes/'+id+'/ingredients/count') as Observable<number>;
+  }
+
+  //couunt steps of a recipe
+  countStepsOfRecipe(id: number): Observable<number> {
+    return this.http.get(this.apiUrl+'recipes/'+id+'/steps/count') as Observable<number>;
+  }
+
+  //search a recipe
+  searchRecipe(name: string): Observable<Recipe[]> {
+    return this.http.get(this.apiUrl+'recipes/title/start/'+name) as Observable<Recipe[]>;
+  }
+
   //add a new recipe
   addRecipe(recipe: Recipe){
     return this.http.post(this.apiUrl+'recipes', [recipe], { responseType: 'text' });

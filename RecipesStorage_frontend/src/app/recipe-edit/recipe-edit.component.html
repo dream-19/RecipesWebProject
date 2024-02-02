@@ -50,7 +50,7 @@
     <div class="form-group mb-3">
       <div formArrayName="ingredientsById">
         <div *ngFor="let ingredient of ingredientsById.controls; let i=index" [formGroupName]="i">
-          <div class="border border-info mb-3">
+          <div class="border border-primary mb-3">
             <div class="form-group m-2">
               <label for="name">Ingredient Name*</label>
               <input type="text" class="form-control" formControlName="name" placeholder="Enter ingredient name">
@@ -75,7 +75,7 @@
             </div>
           </div>
         </div>
-        <button type="button" class="btn btn-info" (click)="addIngredient()">Add Ingredient</button>
+        <button type="button" class="btn btn-primary" (click)="addIngredient()">Add Ingredient</button>
       </div>
     </div>
 
@@ -113,7 +113,8 @@
     </div>
 
     <div class="text-center">
-      <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">Save Recipe</button>
+      <button type="submit" class="btn btn-secondary" [disabled]="!recipeForm.valid">Save Recipe</button>
+      
     </div>
   </form>
   

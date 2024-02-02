@@ -1,35 +1,41 @@
 <div class="container">
     <div class="row "> 
-        <div class="col text-center">
-            <h1>List of Recipes (Total recipes): {{ count }}</h1>
+        <div class="col">
+            <h1> <strong>Recipes Present: {{ count }}</strong></h1>
+        </div>
+        <div class="col">
+            <!-- search button -->
+            <input type="text" class="form-control" placeholder="Search recipes" (keyup)="searchRecipes($event)">
         </div>
     </div>
 
     <div class="row">
         <div class="col text-center">
-            <button type="button" class="btn btn-primary" (click)="showRecipeForm()">Add Recipe</button>
-            <button type="button" class="btn btn-danger" (click)="deleteAllRecipes()">Delete All</button>
+            <button type="button" class="btn btn-secondary m-2" (click)="showRecipeForm()">Add Recipe</button>
+            <button type="button" class="btn btn-danger m-2" (click)="deleteAllRecipes()">Delete All</button>
         </div>
     </div>
 
     <div class="row ">
     <div class="col-md-3 " *ngFor="let recipe of recipes">
-        <div class="card mb-4">
-        <div class="card-body">
-            <h4 class="card-title">Title: {{ recipe.title }}</h4>
-            <p class="card-text">Description: {{ recipe.description }}</p>
-            <p class="card-text">ID: {{ recipe.id }}</p>
-            <!-- display dateOfCreation taking only the date in fromat dd-mm-yyyy -->
-            <p class="card-text">Date of creation: {{ recipe.dateOfCreation | date: 'dd-MM-yyyy' }}</p>
-            <p class="card-text">Serving: {{ recipe.serving }}</p>
-            <p class="card-text">Time: {{ recipe.time }} minutes</p>
-            <p class="card-text">Difficulty: {{ recipe.difficulty }}</p>
+        <div class="card mb-4" id="recipe.id">
             <!-- Display base64 photo if present-->
-            <img *ngIf="recipe.photo" [src]="recipe.photo" class="card-img-top" alt="...">
+            <img *ngIf="recipe.photo" [src]="recipe.photo" class="custom-img-size"  alt="recipe photo">
+        <div class="card-body">
+            <h4 class="card-title"><strong>{{ recipe.title }}</strong></h4>
+
+
+            <p class="card-text"><strong>Date of creation:</strong> {{ recipe.dateOfCreation | date: 'dd-MM-yyyy' }}</p>
+            <p class="card-text"><strong>Serving:</strong> {{ recipe.serving }}</p>
+            <p class="card-text"><strong>Time: </strong>{{ recipe.time }} minutes</p>
+            <p class="card-text"><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+            
+        </div>
+        <div class="card-footer"> 
             <div class="text-center"> <!-- Add text-center class here -->
-                <button type="button" class="btn btn-primary" (click)="showRecipeDetails(recipe.id)">Show</button>
-                <button type="button" class="btn btn-warning" (click)="editRecipe(recipe.id)">Edit</button>
-                <button type="button" class="btn btn-danger" (click)="deleteRecipe(recipe.id)">Delete</button>
+                <button type="button" class="btn btn-primary m-2" (click)="showRecipeDetails(recipe.id)">Show</button>
+                <button type="button" class="btn btn-secondary m-2" (click)="editRecipe(recipe.id)">Edit</button>
+                <button type="button" class="btn btn-danger m-2" (click)="deleteRecipe(recipe.id)">Delete</button>
             </div>
         </div>
         </div>

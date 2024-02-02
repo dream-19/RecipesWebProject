@@ -15,6 +15,7 @@ export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = []; // Declare the type as Recipe[]
   count!: number;
   error: string = '';
+  
 
   constructor(private recipeService: RecipeService, private router: Router, private alertService: AlertService, private defaultImageService: DefaultImageService) { }
 
@@ -40,6 +41,8 @@ export class RecipeListComponent implements OnInit {
         if (!recipe.photo) {
           recipe.photo = this.defaultImageService.getDefaultImage();
         }
+
+      
     });
   });
   }
@@ -91,4 +94,43 @@ export class RecipeListComponent implements OnInit {
       this.alertService.setMessage('Recipes deleted');
     });
   }
+
+
+
+  searchRecipes(event:Event) {
+    const searchTerm = (event.target as HTMLInputElement).value;
+    if (searchTerm === '') {
+      this.loadRecipes();
+      return;
+    }
+    if (searchTerm.trim()) {
+      // Perform the search
+      this.recipeService.searchRecipe(searchTerm).subscribe({
+        next: (data) => {
+          if (data != null) {
+            console.log(data);
+            if (Array.isArray(data)) {
+              this.recipes = data;
+            } else  { // single object
+              this.recipes = [data];
+            }
+            //check if the recipe has a photo, otherwise use a default one (in base64)
+            this.recipes.forEach((recipe: Recipe) => {
+              if (!recipe.photo) {
+                recipe.photo = this.defaultImageService.getDefaultImage();
+              }
+            });
+        } else{
+          this.recipes = [];
+        }
+        },
+        error: (error) => {
+          // Handle error
+          console.error('Error searching for recipe', error);
+          return of([]); // Return an empty array if there's an error
+        }
+      });
+    }
+  }
+  
 }

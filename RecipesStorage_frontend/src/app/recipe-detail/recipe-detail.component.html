@@ -13,7 +13,7 @@
                     <img [src]="placeholderphoto" class="card-img-top" alt="Placeholder photo"/>
                 </ng-template>
                 <div class="card-body bg-light">
-                    <p class="card-text"><strong>Created on:</strong> {{recipe?.dateOfCreation | date: 'longDate'}}</p>
+                    <p class="card-text"><strong>Created on:</strong> {{recipe?.dateOfCreation | date: 'dd-MM-yyyy'}}</p>
                     <p class="card-text"><strong>Serving:</strong> {{ recipe?.serving }}</p>
                     <p class="card-text"><strong>Time:</strong> {{ recipe?.time }} min</p>
                     <p class="card-text"><strong>Difficulty:</strong> {{ recipe?.difficulty }}</p>
