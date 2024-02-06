@@ -17,9 +17,12 @@ public interface RecipeRepository extends PagingAndSortingRepository<RecipeEntit
 
     int count();
 
-    RecipeEntity findByTitle(String title);
 
     Iterable<RecipeEntity> findByDifficulty(Difficulty difficulty);
 
-    Iterable<RecipeEntity> findByTitleStartingWith(String title);
+    
+
+    List<RecipeEntity> findByTitle(String title);
+
+    List<RecipeEntity> findByTitleStartingWith(String titleStart);
 }

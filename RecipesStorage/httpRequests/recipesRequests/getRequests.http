@@ -8,13 +8,13 @@ Accept: application/json
 GET http://localhost:8080/recipeStorage/recipes/1
 Accept: application/json
 
-### get by title (url encoding)
+### get by title (query string)
 
-GET http://localhost:8080/recipeStorage/recipes/title/Classic%20Spaghetti%20Bolognese
+GET http://localhost:8080/recipeStorage/recipes?title=Mushroom
 Accept: application/json
 
-### GET BY title start
-GET http://localhost:8080/recipeStorage/recipes/title/start/Ch
+### GET BY title start (query string)
+GET http://localhost:8080/recipeStorage/recipes?title_start=ch
 Accept: application/json
 
 ### get by difficulty (Easy, Medium, Hard)

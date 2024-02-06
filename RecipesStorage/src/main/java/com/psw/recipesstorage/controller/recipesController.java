@@ -29,13 +29,30 @@ public class recipesController {
     @Autowired
     private Validator validator;
 
-    //GET on collection (take all the recipes)
+    /*GET on collection (take all the recipes)
     @RequestMapping(value = "/recipes",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<RecipeEntity> getRecipes() {
         Iterable<RecipeEntity> recipes=recipeRepository.findAll();
         return recipes;
+    }*/
+
+    //GET recipes with optional title filter
+    @RequestMapping(value = "/recipes",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<RecipeEntity> getRecipes(@RequestParam(value = "title", required = false) String title, @RequestParam( value="title_start", required = false) String title_start) {
+        if (title != null && !title.isEmpty()) {
+            return recipeRepository.findByTitle(title);
+        }
+        else if (title_start != null && !title_start.isEmpty()) {
+            return recipeRepository.findByTitleStartingWith(title_start);
+        }
+        else {
+            // Return all recipes if no title is specified
+            return recipeRepository.findAll();
+        }
     }
 
     //GET recipe by id
@@ -47,23 +64,15 @@ public class recipesController {
         return recipe;
     }
 
-    //GET by title
-    @RequestMapping(value = "/recipes/title/{title}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public RecipeEntity getRecipeByTitle(@PathVariable("title") String title) {
-        RecipeEntity recipe=recipeRepository.findByTitle(title);
-        return recipe;
-    }
 
-    //GET by beginning of title
+    /*GET by beginning of title
     @RequestMapping(value = "/recipes/title/start/{title}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<RecipeEntity> getRecipeByTitleBeginning(@PathVariable("title") String title) {
         Iterable<RecipeEntity> recipes=recipeRepository.findByTitleStartingWith(title);
         return recipes;
-    }
+    }*/
 
     //GET by difficulty
     @RequestMapping(value = "/recipes/difficulty/{difficulty}",
@@ -85,7 +94,6 @@ public class recipesController {
     @ResponseStatus( HttpStatus.CREATED) //201
     @Transactional
     public ResponseEntity<?> createRecipe(@Valid @RequestBody List<RecipeEntity> recipes, BindingResult bindingResult) {
-        log.info("STARTTTTT");
         //Create all the recipes
         for (RecipeEntity recipe : recipes) {
             //validate
