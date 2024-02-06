@@ -31,16 +31,16 @@ This is a REST API to manage a storage of recipes. It is written in Java using S
 The API allows to make the following CRUD calls (the results are in JSON format)<br>
 All of the values are validated before saving them in the database. If a value is not valid, the API returns an error message (tipically an error 400: bad requests, or 404: not found).
 - for the recipes:
-* GET http://localhost:8080/recipeStorage/recipes (all the recipes) 
-* GET http://localhost:8080/recipeStorage/recipes/{recipe_id} (a specific recipe) 
-* GET http://localhost:8080/recipeStorage/recipes/?title=YourRecipeTitle (get recipe with title)
-* GET http://localhost:8080/recipeStorage/recipes?title_start=RecipeTitle (get recipe with beginning of its title)
-* GET http://localhost:8080/recipeStorage/recipes/difficulty/{recipe_difficulty} (get recipes by difficulty)
-* POST http://localhost:8080/recipeStorage/recipes (add an array of new recipes!)
-* PUT http://localhost:8080/recipeStorage/recipes/{recipe_id} (update a recipe)
-* DELETE http://localhost:8080/recipeStorage/recipes/{recipe_id} (delete a recipe)
-* DELETE http://localhost:8080/recipeStorage/recipes (delete all the recipes)
-* GET  http://localhost:8080/recipeStorage/recipes/count (count the number of recipes)
+    * GET http://localhost:8080/recipeStorage/recipes (all the recipes) 
+    * GET http://localhost:8080/recipeStorage/recipes/{recipe_id} (a specific recipe) 
+    * GET http://localhost:8080/recipeStorage/recipes/?title=YourRecipeTitle (get recipe with title)
+    * GET http://localhost:8080/recipeStorage/recipes?title_start=RecipeTitle (get recipe with beginning of its title)
+    * GET http://localhost:8080/recipeStorage/recipes/difficulty/{recipe_difficulty} (get recipes by difficulty)
+    * POST http://localhost:8080/recipeStorage/recipes (add an array of new recipes!)
+    * PUT http://localhost:8080/recipeStorage/recipes/{recipe_id} (update a recipe)
+    * DELETE http://localhost:8080/recipeStorage/recipes/{recipe_id} (delete a recipe)
+    * DELETE http://localhost:8080/recipeStorage/recipes (delete all the recipes)
+    * GET  http://localhost:8080/recipeStorage/recipes/count (count the number of recipes)
 
 A post request for a recipe must specify:
 {<br>
@@ -49,7 +49,8 @@ A post request for a recipe must specify:
     "time": timeInMinutes,<br>
     "difficulty": "Easy or Medium or Hard",<br>
 }
-<br>
+
+
 A post request for a recipe can also specify
 {<br>
     "description": "YourRecipeDescription",<br>
@@ -57,14 +58,14 @@ A post request for a recipe can also specify
 }
 
 - for the ingredients:
-* GET http://localhost:8080/recipeStorage/ingredients (all the ingredients)
-* GET http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients (ingredients of a recipe)
-* POST http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients (add an array of ingredients to a specific recipe)
-* PUT http://localhost:8080/recipeStorage/ingredients/{ingredient_id} (update an ingredient)
-* DELETE http://localhost:8080/recipeStorage/ingredients/{ingredient_id} (delete an ingredient)
-* DELETE http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients (delete all the ingredients of a recipe)
-* DELETE http://localhost:8080/recipeStorage/ingredients (delete all the ingredients)
-* GET  http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients/count (count the number of ingredients of a recipe)
+    * GET http://localhost:8080/recipeStorage/ingredients (all the ingredients)
+    * GET http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients (ingredients of a recipe)
+    * POST http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients (add an array of ingredients to a specific recipe)
+    * PUT http://localhost:8080/recipeStorage/ingredients/{ingredient_id} (update an ingredient)
+    * DELETE http://localhost:8080/recipeStorage/ingredients/{ingredient_id} (delete an ingredient)
+    * DELETE http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients (delete all the ingredients of a recipe)
+    * DELETE http://localhost:8080/recipeStorage/ingredients (delete all the ingredients)
+    * GET  http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients/count (count the number of ingredients of a recipe)
 
 A post request for an ingredient must specify
 {<br>
@@ -74,15 +75,15 @@ A post request for an ingredient must specify
 }
 
 - for the steps:
-* GET http://localhost:8080/recipeStorage/steps (all the steps)
-* GET http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps (steps of a recipe)
-* POST http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps (add an array of steps to a specific recipe)
-* PUT http://localhost:8080/recipeStorage/steps/{step_id} (update a step)
-* DELETE http://localhost:8080/recipeStorage/steps/{step_id} (delete a step)
-* DELETE http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps (delete all the steps of a recipe)
-* DELETE http://localhost:8080/recipeStorage/steps (delete all the steps)
-* GET  http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps/count (count the number of steps of a recipe)
-* GET http://localhost:8080/recipeStorage/steps/count (count all the steps saved in the database)
+    * GET http://localhost:8080/recipeStorage/steps (all the steps)
+    * GET http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps (steps of a recipe)
+    * POST http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps (add an array of steps to a specific recipe)
+    * PUT http://localhost:8080/recipeStorage/steps/{step_id} (update a step)
+    * DELETE http://localhost:8080/recipeStorage/steps/{step_id} (delete a step)
+    * DELETE http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps (delete all the steps of a recipe)
+    * DELETE http://localhost:8080/recipeStorage/steps (delete all the steps)
+    * GET  http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps/count (count the number of steps of a recipe)
+    * GET http://localhost:8080/recipeStorage/steps/count (count all the steps saved in the database)
 
 A post request for the step must specify
 {<br>
