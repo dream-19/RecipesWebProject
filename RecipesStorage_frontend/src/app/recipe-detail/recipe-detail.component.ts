@@ -13,6 +13,8 @@ import { DefaultImageService } from '../default-image.service';
 
 export class RecipeDetailComponent {
   recipe: Recipe | undefined;
+  ingredientsCount?: number;
+  stepsCount?: number;
   placeholderphoto: string | undefined;
 
   constructor(
@@ -26,6 +28,7 @@ export class RecipeDetailComponent {
   ngOnInit() {
     const recipeId = Number(this.route.snapshot.paramMap.get('id')); // Convert recipeId to a number
     if (recipeId) {
+      //get the recipe
       this.recipeService.getRecipe(recipeId).subscribe((data: Recipe) => {
         this.recipe = data;
         if (!this.recipe) {
@@ -40,12 +43,25 @@ export class RecipeDetailComponent {
         }
         console.log(this.recipe);
 
-        if(this.recipe.photo == null) {
+        if(this.recipe.photo == null || this.recipe.photo == "") {
           this.placeholderphoto = this.defaultImageService.getDefaultImage();
-        }
+        } 
       
       });
+
+      //get the number of ingredients of the recipe
+      this.recipeService.countIngredientsOfRecipe(recipeId).subscribe((data: number) => {
+        this.ingredientsCount = data; //get the number of ingredients of the recipe
+        console.log(this.ingredientsCount);
+      });
+      //get the number of steps of the recipe
+      this.recipeService.countStepsOfRecipe(recipeId).subscribe((data: number) => {
+        this.stepsCount = data; //get the number of steps of the recipe
+        console.log(this.stepsCount);
+      });
     }
+
+    
   }
 
    //edit a recipe

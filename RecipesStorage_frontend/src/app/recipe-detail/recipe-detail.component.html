@@ -41,6 +41,7 @@
 
             <div class="mb-3">
                 <h3>Ingredients</h3>
+                <h6>Total ingredients: {{ingredientsCount }}</h6>
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-warning" *ngFor="let ingredient of recipe?.ingredientsById">
                         <strong>{{ ingredient.name }}:</strong> {{ ingredient.quantity }} {{ ingredient.unitOfMeasurement }}
@@ -50,6 +51,7 @@
 
             <div>
                 <h3>Steps</h3>
+                <h6>Total steps: {{ stepsCount }}</h6>
                 <!-- list bold -->
                 <ol class="list-group list-group-numbered list-group-item-warning">
                     <li class="list-group-item" *ngFor="let step of recipe?.stepsById">
