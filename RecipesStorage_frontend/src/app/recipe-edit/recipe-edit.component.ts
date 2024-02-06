@@ -33,8 +33,8 @@ export class RecipeEditComponent implements OnInit {
     this.recipeForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
-      serving: ['', Validators.required],
-      time: ['', Validators.required],
+      serving: ['', [Validators.required, Validators.min(1)]],
+      time: ['', [Validators.required, Validators.min(1)]],
       difficulty: ['', Validators.required],
       photo: [''], // Assuming photo is handled as a base64 string
       ingredientsById: this.fb.array([]),
@@ -105,7 +105,7 @@ export class RecipeEditComponent implements OnInit {
   newIngredient(): FormGroup {
     return this.fb.group({
       name: ['', Validators.required],
-      quantity: ['', Validators.required],
+      quantity: ['', [Validators.required, Validators.min(0)]],
       unitOfMeasurement: ['', Validators.required],
     });
   }

@@ -146,8 +146,11 @@ export class RecipeListComponent implements OnInit {
 
 
     switch (value) {
-      case 'dateOfCreation':
+      case 'dateOfCreation_old':
         this.recipes.sort((a, b) => new Date(a.dateOfCreation).getTime() - new Date(b.dateOfCreation).getTime());
+        break;
+      case 'dateOfCreation_new':
+        this.recipes.sort((a, b) => new Date(b.dateOfCreation).getTime() - new Date(a.dateOfCreation).getTime());
         break;
       case 'title_asc':
         this.recipes.sort((a, b) => a.title.localeCompare(b.title));
