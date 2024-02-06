@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Recipe } from './Recipes';
@@ -23,7 +23,7 @@ export class RecipeService {
     return this.http.get(this.apiUrl+'recipes/count') as Observable<number>;
   }
 
-  //get a recipe by id
+  //get a recipe by id (query string)
   getRecipe(id: number): Observable<Recipe> {
     return this.http.get(this.apiUrl+'recipes/'+id) as Observable<Recipe>;
   }
@@ -38,9 +38,16 @@ export class RecipeService {
     return this.http.get(this.apiUrl+'recipes/'+id+'/steps/count') as Observable<number>;
   }
 
-  //search a recipe
+  //search a recipe by title
+  
   searchRecipe(name: string): Observable<Recipe[]> {
-    return this.http.get(this.apiUrl+'recipes/title/start/'+name) as Observable<Recipe[]>;
+    // Define HTTP params
+    let params = new HttpParams();
+    if (name) {
+      params = params.append('title_start', name);
+    }
+  
+    return this.http.get<Recipe[]>(this.apiUrl + 'recipes', { params }) as Observable<Recipe[]>;
   }
 
   //add a new recipe
