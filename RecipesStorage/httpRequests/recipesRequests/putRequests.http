@@ -5,17 +5,5 @@ Content-Type: application/json
 
 {
   "title": "Prima ricetta modificata",
-  "dateOfCreation": "2024-01-01",
-  "description": "descrizione modificata"
-}
-
-### Bad put requests (date format)
-PUT http://localhost:8080/recipeStorage/recipes/1
-Accept: application/json
-Content-Type: application/json
-
-{
-  "title": "Prima ricetta modificata",
-  "dateOfCreation": "2024---0101",
   "description": "descrizione modificata"
 }

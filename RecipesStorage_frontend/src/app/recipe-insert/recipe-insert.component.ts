@@ -116,8 +116,7 @@ export class RecipeInsertComponent implements OnInit {
       this.recipeForm.value.stepsById = stepsWithNumbers;
     
 
-      //add the dateOfCreation
-      this.recipeForm.value.dateOfCreation = new Date().toISOString().slice(0, 10);
+     
       console.log(this.recipeForm.value);
       this.recipeService.addRecipe(this.recipeForm.value).subscribe({
         next: (res) => {

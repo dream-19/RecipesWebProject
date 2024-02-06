@@ -27,7 +27,7 @@ public class RecipeEntity {
     @Column(name = "title", nullable = false, length = 255)
     private String title;
     @Basic
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "date_of_creation", nullable = true)
     private Timestamp dateOfCreation;
     @Basic

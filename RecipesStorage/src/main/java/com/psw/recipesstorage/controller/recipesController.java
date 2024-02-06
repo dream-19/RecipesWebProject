@@ -14,6 +14,8 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -122,7 +124,6 @@ public class recipesController {
             }
 
             //save also new steps if specified
-            // Check if steps are received
             if (recipe.getStepsById() != null)
                 if( !recipe.getStepsById().isEmpty()) {
                 for (StepEntity step : recipe.getStepsById()) {
@@ -141,6 +142,8 @@ public class recipesController {
             }
 
             //save the new recipe
+            //date of creation of the recipe: now
+            recipe.setDateOfCreation(Timestamp.valueOf(LocalDateTime.now()));
             recipeRepository.save(recipe);
 
         }
@@ -171,9 +174,10 @@ public class recipesController {
         if (recipe.getTitle() != null) {
             recipeToUpdate.setTitle(recipe.getTitle());
         }
+        /* do not update the date of creation
         if (recipe.getDateOfCreation() != null) {
             recipeToUpdate.setDateOfCreation(recipe.getDateOfCreation());
-        }
+        }*/
         if (recipe.getServing() != null) {
             recipeToUpdate.setServing(recipe.getServing());
         }

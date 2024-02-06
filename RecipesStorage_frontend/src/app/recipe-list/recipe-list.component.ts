@@ -87,16 +87,21 @@ export class RecipeListComponent implements OnInit {
 
   //delete all the recipes
   deleteAllRecipes() {
-    this.recipeService.deleteAllRecipes().subscribe((data: any) => {
-      console.log(data);
-      this.loadRecipes();
-      this.countAllRecipes();
-      this.alertService.setMessage('Recipes deleted');
-    });
+    // Confirmation dialog
+    const isConfirmed = confirm('Are you sure you want to delete all recipes? This action cannot be undone.');
+    if (isConfirmed) {
+      this.recipeService.deleteAllRecipes().subscribe((data: any) => {
+        console.log(data);
+        this.loadRecipes();
+        this.countAllRecipes();
+        this.alertService.setMessage('Recipes deleted');
+      });
+    }
+    
   }
 
 
-
+ //Search Recipes
   searchRecipes(event:Event) {
     const searchTerm = (event.target as HTMLInputElement).value;
     if (searchTerm === '') {
@@ -130,6 +135,40 @@ export class RecipeListComponent implements OnInit {
           return of([]); // Return an empty array if there's an error
         }
       });
+    }
+  }
+
+  //order recipes
+  orderBy(event: any): void {
+    const value = event.target.value;
+    // Custom sort for difficulty
+    const difficultyOrder: { [key: string]: number } = { 'Easy': 1, 'Medium': 2, 'Hard': 3 };
+
+
+    switch (value) {
+      case 'dateOfCreation':
+        this.recipes.sort((a, b) => new Date(a.dateOfCreation).getTime() - new Date(b.dateOfCreation).getTime());
+        break;
+      case 'title_asc':
+        this.recipes.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'title_des':
+        this.recipes.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      case 'serving':
+        this.recipes.sort((a, b) => a.serving - b.serving);
+        break;
+      case 'time':
+        this.recipes.sort((a, b) => a.time - b.time);
+        break;
+      case 'difficulty':
+        //I have easy -> medium -> hard
+        this.recipes.sort((a, b) => difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]);
+
+        break;
+      default:
+        // Handle default case or do nothing
+        break;
     }
   }
   

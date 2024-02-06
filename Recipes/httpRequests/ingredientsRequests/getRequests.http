@@ -1,9 +1,0 @@
-### get all ingredients
-
-GET http://localhost:8080/recipeStorage/ingredients
-Accept: application/json
-
-### get ingredient by recipe
-
-GET http://localhost:8080/recipeStorage/recipes/1/ingredients
-Accept: application/json

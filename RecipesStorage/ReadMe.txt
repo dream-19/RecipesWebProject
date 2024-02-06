@@ -39,6 +39,20 @@ DELETE http://localhost:8080/recipeStorage/recipes/{recipe_id} (delete a recipe)
 DELETE http://localhost:8080/recipeStorage/recipes (delete all the recipes)
 GET  http://localhost:8080/recipeStorage/recipes/count (count the number of recipes)
 
+A post request for a recipe must specify
+{
+    "title": "YourRecipeTitle",
+    "serving": servingNumber,
+    "time": timeInMinutes,
+    "difficulty": "Easy or Medium or Hard",
+}
+
+A post request for a recipe can also specify
+{
+    "description": "YourRecipeDescription",
+    "photo": "YourRecipePhotoBase64String"
+}
+
 - for the ingredients:
 GET http://localhost:8080/recipeStorage/ingredients (all the ingredients)
 GET http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients (ingredients of a recipe)
@@ -48,6 +62,13 @@ DELETE http://localhost:8080/recipeStorage/ingredients/{ingredient_id} (delete a
 DELETE http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients (delete all the ingredients of a recipe)
 DELETE http://localhost:8080/recipeStorage/ingredients (delete all the ingredients)
 GET  http://localhost:8080/recipeStorage/recipes/{recipe_id}/ingredients/count (count the number of ingredients of a recipe)
+
+A post request for an ingredient must specify
+{
+    "name": "YourIngredientName",
+    "quantity": ingredientQuantity,
+    "unitOfMeasurement": "YourUnitOfMeasurement"
+}
 
 - for the steps:
 GET http://localhost:8080/recipeStorage/steps (all the steps)
@@ -59,6 +80,15 @@ DELETE http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps (delete all
 DELETE http://localhost:8080/recipeStorage/steps (delete all the steps)
 GET  http://localhost:8080/recipeStorage/recipes/{recipe_id}/steps/count (count the number of steps of a recipe)
 GET http://localhost:8080/recipeStorage/steps/count (count all the steps saved in the database)
+
+A post request for the step must specify
+{
+    "stepNumber": stepNumber,
+    "title": "YourStepTitle",
+    "description": "YourStepDescription"
+}
+
+ --------------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------------------------------------
 

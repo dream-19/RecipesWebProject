@@ -24,12 +24,12 @@
     <div class="row mb-3">
       <div class="col">
           <label for="serving" class="form-label">Serving*</label>
-          <input type="number" class="form-control" id="serving" formControlName="serving" placeholder="Number of servings">
+          <input type="number" class="form-control" min="1" id="serving" formControlName="serving" placeholder="Number of servings">
         
       </div>
       <div class="col">
           <label for="time" class="form-label">Time (minutes)*</label>
-          <input type="number" class="form-control" id="time" formControlName="time" placeholder="Preparation time in minutes">
+          <input type="number" class="form-control" id="time" min="1" formControlName="time" placeholder="Preparation time in minutes">
       </div>
       <div class="col">
           <label for="difficulty" class="form-label">Difficulty*</label>
@@ -59,7 +59,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="quantity">Quantity*</label>
-                    <input type="number" class="form-control" formControlName="quantity" placeholder="Enter ingredient quantity">
+                    <input type="number" class="form-control"  formControlName="quantity" placeholder="Enter ingredient quantity">
                   </div>
                 </div>
                 <div class="col">

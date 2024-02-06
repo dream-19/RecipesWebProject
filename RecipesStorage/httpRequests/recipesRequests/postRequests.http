@@ -5,7 +5,6 @@ Content-Type: application/json
 
 [{
   "title": "Ricetta di prova",
-  "dateOfCreation": "2024-01-01",
   "serving": 4,
   "difficulty": "Easy",
   "time": 30
@@ -18,7 +17,6 @@ Content-Type: application/json
 
 [{
   "title": "Ricetta di prova",
-  "dateOfCreation": "2024-01-01",
   "serving": 4,
   "difficulty": "Easy",
   "time": 30,
@@ -54,7 +52,6 @@ Accept: application/json
 Content-Type: application/json
 
 [{
-  "dateOfCreation": "2024-01-01",
   "serving": 4,
   "difficulty": "Easy",
   "time": 30
@@ -67,7 +64,6 @@ Content-Type: application/json
 
 [{
   "title": "Ricetta di prova",
-  "dateOfCreation": "2024-01-01",
   "serving": 4,
   "difficulty": "Easyyyyy",
   "time": 30
@@ -80,7 +76,6 @@ Content-Type: application/json
 
 [{
   "title": "apple",
-  "dateOfCreation": "2024-01-01",
   "serving": 1,
   "difficulty": "Easy",
   "time": 30,
