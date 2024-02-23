@@ -42,7 +42,6 @@ export class RecipeListComponent implements OnInit {
           recipe.photo = this.defaultImageService.getDefaultImage();
         }
 
-      
     });
   });
   }
